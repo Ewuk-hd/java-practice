@@ -44,4 +44,17 @@ public class DynamicArray {
         arr2[value.length] = num;
         value = arr2;
     }
+
+    public void addFirst(int x) {
+        if (value == null) {
+            value = new int[]{x};
+            return;
+        }
+        int[] arr1 = new int[value.length + 1];
+        arr1[0] = x;
+        for (int i = 1; i < value.length + 1; i++) {
+            arr1[i] = value[i - 1];
+        }
+        value = arr1;
+    }
 }

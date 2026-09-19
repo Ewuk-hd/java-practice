@@ -58,4 +58,43 @@ public class ArrayUtils {
         arr1[arr.length] = x;
         return arr1;
     }
+
+    public static int[] addFirst (int []arr, int x){
+        if (arr == null){
+            return new int[]{x};
+        }
+
+        int [] arr1 = new int[arr.length + 1];
+        arr1[0] = x;
+        for(int i = 1; i<arr.length+1; i++){
+            arr1[i] = arr[i-1];
+        }
+        return arr1;
+    }
+
+    public static int[] addToPosition(int[] arr, int x, int pos){
+        if (arr == null) {
+            if (pos == 0) {
+                return new int[]{x};
+            }
+            throw new IndexOutOfBoundsException("Позиция " + pos + " недопустима для пустого массива (arr == null)");
+        }
+
+        if (pos < 0 || pos > arr.length) {
+            throw new IndexOutOfBoundsException("Позиция " + pos + " вне диапазона [0, " + arr.length + "]");
+        }
+
+        int[] arr1 = new int[arr.length + 1];
+        arr1[pos] = x;
+
+        for (int i = 0; i < arr.length + 1; i++) {
+            if (i == pos) continue;
+            if (i < pos) {
+                arr1[i] = arr[i];
+            } else if (i > pos) {
+                arr1[i] = arr[i - 1];
+            }
+        }
+        return arr1;
+    }
 }

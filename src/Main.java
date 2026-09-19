@@ -5,7 +5,13 @@ class Main {
         System.out.println(arrDyn);
         arrDyn.value = new int[]{1, 2, 3, 4};
         arrDyn.addLast(55);
+        arrDyn.addFirst(99);
         System.out.println(arrDyn);
         System.out.println(arrDyn.sum());
+
+        int[] result = ArrayUtils.addToPosition(arr, 77, 2);
+        System.out.println(ArrayUtils.arrToString(result));
+
+
     }
 }

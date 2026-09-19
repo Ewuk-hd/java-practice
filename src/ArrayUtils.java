@@ -97,4 +97,49 @@ public class ArrayUtils {
         }
         return arr1;
     }
+
+    public static int[] delLast(int []arr){
+        if (arr == null || arr.length == 0) {
+            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+        }
+
+        int[] arr1 = new int[arr.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = arr[i];
+        }
+        return arr1;
+    }
+
+    public static int[] delFirst(int []arr){
+        if (arr == null || arr.length == 0) {
+            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+        }
+
+        int[] arr1 = new int[arr.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = arr[i+1];
+        }
+        return arr1;
+    }
+
+    public static int[] delFromPosition(int[] arr, int pos){
+        if (arr == null || arr.length == 0) {
+            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+        }
+        if (pos < 0 || pos >= arr.length) {
+            throw new IndexOutOfBoundsException("Позиция " + pos + " вне диапазона [0, " + (arr.length - 1) + "]");
+        }
+
+        int[] arr1 = new int[arr.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            if (i < pos) {
+                arr1[i] = arr[i];
+            } else {
+                arr1[i] = arr[i + 1];
+            }
+        }
+        return arr1;
+    }
+
+
 }

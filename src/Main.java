@@ -12,6 +12,9 @@ class Main {
         int[] result = ArrayUtils.addToPosition(arr, 77, 2);
         System.out.println(ArrayUtils.arrToString(result));
 
+        result = ArrayUtils.delFirst(result);
+        result = ArrayUtils.delFromPosition(result, 1);
+        System.out.println(ArrayUtils.arrToString(result));
 
     }
 }

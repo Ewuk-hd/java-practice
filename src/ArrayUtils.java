@@ -77,11 +77,13 @@ public class ArrayUtils {
             if (pos == 0) {
                 return new int[]{x};
             }
-            throw new IndexOutOfBoundsException("Позиция " + pos + " недопустима для пустого массива (arr == null)");
+            System.out.println("Позиция " + pos + " недопустима для пустого массива (arr == null)");
+            return null;
         }
 
         if (pos < 0 || pos > arr.length) {
-            throw new IndexOutOfBoundsException("Позиция " + pos + " вне диапазона [0, " + arr.length + "]");
+            System.out.println("Позиция " + pos + " вне диапазона [0, " + arr.length + "]");
+            return arr;
         }
 
         int[] arr1 = new int[arr.length + 1];
@@ -100,7 +102,8 @@ public class ArrayUtils {
 
     public static int[] delLast(int []arr){
         if (arr == null || arr.length == 0) {
-            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+            System.out.println("Массив пуст, удалять нечего");
+            return null;
         }
 
         int[] arr1 = new int[arr.length - 1];
@@ -112,7 +115,8 @@ public class ArrayUtils {
 
     public static int[] delFirst(int []arr){
         if (arr == null || arr.length == 0) {
-            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+            System.out.println("Массив пуст, удалять нечего");
+            return null;
         }
 
         int[] arr1 = new int[arr.length - 1];
@@ -124,10 +128,12 @@ public class ArrayUtils {
 
     public static int[] delFromPosition(int[] arr, int pos){
         if (arr == null || arr.length == 0) {
-            throw new IndexOutOfBoundsException("Массив пуст, удалять нечего");
+            System.out.println("Массив пуст, удалять нечего");
+            return null;
         }
         if (pos < 0 || pos >= arr.length) {
-            throw new IndexOutOfBoundsException("Позиция " + pos + " вне диапазона [0, " + (arr.length - 1) + "]");
+            System.out.println("Позиция " + pos + " вне диапазона [0, " + (arr.length - 1) + "]");
+            return null;
         }
 
         int[] arr1 = new int[arr.length - 1];

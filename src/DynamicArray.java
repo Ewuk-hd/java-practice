@@ -45,6 +45,7 @@ public class DynamicArray {
         value = arr2;
     }
 
+//мб не надо было, но добавил
     public void addFirst(int x) {
         if (value == null) {
             value = new int[]{x};
@@ -54,6 +55,82 @@ public class DynamicArray {
         arr1[0] = x;
         for (int i = 1; i < value.length + 1; i++) {
             arr1[i] = value[i - 1];
+        }
+        value = arr1;
+    }
+
+    public void addToPosition(int x, int pos) {
+        if (value == null) {
+            if (pos == 0) {
+                value = new int[]{x};
+                return;
+            }
+            System.out.println("Позиция " + pos + " недопустима для null-массива");
+            return;
+        }
+
+        if (pos < 0 || pos > value.length) {
+            System.out.println("Позиция " + pos + " вне диапазона [0, " + value.length + "]");
+            return;
+        }
+
+        int[] arr1 = new int[value.length + 1];
+        arr1[pos] = x;
+
+        for (int i = 0; i < value.length + 1; i++) {
+            if (i == pos) continue;
+            if (i < pos) {
+                arr1[i] = value[i];
+            } else {
+                arr1[i] = value[i - 1];
+            }
+        }
+        value = arr1;
+    }
+
+    public void delLast() {
+        if (value == null || value.length == 0) {
+            System.out.println("Массив пуст, удалять нечего");
+            return;
+        }
+
+        int[] arr1 = new int[value.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = value[i];
+        }
+        value = arr1;
+    }
+
+    public void delFirst() {
+        if (value == null || value.length == 0) {
+            System.out.println("Массив пуст, удалять нечего");
+            return;
+        }
+
+        int[] arr1 = new int[value.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = value[i + 1];
+        }
+        value = arr1;
+    }
+
+    public void delFromPosition(int pos) {
+        if (value == null || value.length == 0) {
+            System.out.println("Массив пуст, удалять нечего");
+            return;
+        }
+        if (pos < 0 || pos >= value.length) {
+            System.out.println("Позиция " + pos + " вне диапазона [0, " + (value.length - 1) + "]");
+            return;
+        }
+
+        int[] arr1 = new int[value.length - 1];
+        for (int i = 0; i < arr1.length; i++) {
+            if (i < pos) {
+                arr1[i] = value[i];
+            } else {
+                arr1[i] = value[i + 1];
+            }
         }
         value = arr1;
     }

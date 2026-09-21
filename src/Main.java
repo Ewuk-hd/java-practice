@@ -1,62 +1,83 @@
 class Main {
     public static void main(String[] args) {
-        int[] arr = {3, 4, 2};
-        DynamicArray arrDyn = new DynamicArray();
-        System.out.println(arrDyn);
-        arrDyn.value = new int[]{1, 2, 3, 4};
-        arrDyn.addLast(55);
-        arrDyn.addFirst(99);
-        System.out.println(arrDyn);
-        System.out.println(arrDyn.sum());
+        int[] arr = {5, 1, 4};
+        int[] empty = new int[0];
+        int[] nothing = null;
 
-        int[] result = ArrayUtils.addToPosition(arr, 77, 2);
-        System.out.println(ArrayUtils.arrToString(result));
+        // ArrayUtils
+        System.out.println(ArrayUtils.arrSum(arr));
+        System.out.println(ArrayUtils.arrSum(nothing));
 
-        result = ArrayUtils.delFirst(result);
-        result = ArrayUtils.delFromPosition(result, 1);
-        System.out.println(ArrayUtils.arrToString(result));
+        System.out.println(ArrayUtils.arrToString(arr));
+        System.out.println(ArrayUtils.arrToString(empty));
+        System.out.println("\n");
+
+        int[][] matrix1 = {{5, 5}, {1}, {2, 3}};
+        int[][] matrix2 = {{9}, {-1, -2}, {0}};
+        for (int[] row : ArrayUtils.sortRowsBySum(matrix1)) {
+            System.out.println(ArrayUtils.arrToString(row));
+        }
+
+        System.out.println("\n");
+
+        for (int[] row : ArrayUtils.sortRowsBySum(matrix2)) {
+            System.out.println(ArrayUtils.arrToString(row));
+        }
+
+        System.out.println("\n");
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addLast(arr, 9)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addLast(nothing, 9)));
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addFirst(arr, 0)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addFirst(nothing, 0)));
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addToPosition(arr, 7, 1)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.addToPosition(arr, 7, 10)));
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delLast(arr)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delLast(empty)));
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delFirst(arr)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delFirst(empty)));
+
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delFromPosition(arr, 1)));
+        System.out.println(ArrayUtils.arrToString(ArrayUtils.delFromPosition(arr, 5)));
+
+        System.out.println("\n");
+
+        // DynamicArray
+        DynamicArray d = new DynamicArray();
+        System.out.println(d);
+        System.out.println(d.sum());
+        d.value = new int[]{1, 2, 3};
+        System.out.println(d);
+        System.out.println(d.sum());
+
+        d.addLast(4);
+        d.addLast(5);
+        System.out.println(d);
+
+        d.addFirst(0);
+        d.addFirst(-1);
+        System.out.println(d);
+
+        d.addToPosition(100, 2);
+        d.addToPosition(100, 50);
+        System.out.println(d);
+
+        d.delLast();
+        d.delLast();
+        System.out.println(d);
+
+        d.delFirst();
+        d.delFirst();
+        System.out.println(d);
+
+        d.delFromPosition(1);
+        d.delFromPosition(50);
+        System.out.println(d);
+
         System.out.println("\n\n");
-
-
-        // 1.1.1 - Точка
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(-3, 5);
-        Point p3 = new Point(0, 0);
-        System.out.println(p1);
-        System.out.println(p2);
-        System.out.println(p3);
-
-        // 1.1.2 - Человек
-        Person cleopatra = new Person("Клеопатра", 152);
-        Person pushkin = new Person("Пушкин", 167);
-        Person alexander = new Person("Александр", 189);
-        System.out.println(cleopatra);
-        System.out.println(pushkin);
-        System.out.println(alexander);
-
-        // 1.1.3 - Имя
-        FullName n1 = new FullName(null, "Клеопатра", null);
-        FullName n2 = new FullName("Пушкин", "Александр", "Сергеевич");
-        FullName n3 = new FullName("Маяковский", "Владимир", null);
-        System.out.println(n1);
-        System.out.println(n2);
-        System.out.println(n3);
-
-        // 1.1.4 - Время
-        DayTime t1 = new DayTime(10);
-        DayTime t2 = new DayTime(10000);
-        DayTime t3 = new DayTime(100000);
-        System.out.println(t1);
-        System.out.println(t2);
-        System.out.println(t3);
-
-        // 1.1.5 - Дом
-        House h1 = new House(1);
-        House h2 = new House(5);
-        House h3 = new House(23);
-        System.out.println(h1);
-        System.out.println(h2);
-        System.out.println(h3);
-
     }
 }

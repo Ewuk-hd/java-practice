@@ -11,24 +11,18 @@ public class FullName {
 
     @Override
     public String toString() {
-        String result = "";
+        String result = null;
 
         if (lastName != null) {
-            result = result + lastName;
+            result = lastName;
         }
         if (firstName != null) {
-            if (result.length() > 0) {
-                result = result + " ";
-            }
-            result = result + firstName;
+            result = result == null ? firstName : result + " " + firstName;
         }
         if (patronymic != null) {
-            if (result.length() > 0) {
-                result = result + " ";
-            }
-            result = result + patronymic;
+            result = result == null ? patronymic : result + " " + patronymic;
         }
 
-        return result;
+        return result == null ? "" : result;
     }
 }

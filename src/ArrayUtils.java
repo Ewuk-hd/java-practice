@@ -137,12 +137,10 @@ public class ArrayUtils {
             if (pos == 0) {
                 return new int[]{x};
             }
-            System.out.println("Позиция " + pos + " недопустима для null-массива");
             return null;
         }
 
         if (pos < 0 || pos > arr.length) {
-            System.out.println("Позиция " + pos + " вне диапазона [0, " + arr.length + "]");
             return arr;
         }
 
@@ -170,7 +168,6 @@ public class ArrayUtils {
      */
     public static int[] delLast(int []arr){
         if (arr == null || arr.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return null;
         }
 
@@ -191,7 +188,6 @@ public class ArrayUtils {
      */
     public static int[] delFirst(int []arr){
         if (arr == null || arr.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return null;
         }
 
@@ -216,11 +212,9 @@ public class ArrayUtils {
      */
     public static int[] delFromPosition(int[] arr, int pos){
         if (arr == null || arr.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return null;
         }
         if (pos < 0 || pos >= arr.length) {
-            System.out.println("Позиция " + pos + " вне диапазона [0, " + (arr.length - 1) + "]");
             return null;
         }
 
@@ -234,6 +228,4 @@ public class ArrayUtils {
         }
         return arr1;
     }
-
-
 }

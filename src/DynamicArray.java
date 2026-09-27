@@ -1,12 +1,3 @@
-// 1) добавить сюда JavaDoc (на каждый класс повесить описание методов и сгенерировать html. ArrayUtils это библиотека, которую мы закинем в репозиторий)
-
-// 2) добавить в начало, в указанную позицию, удаление соответственно
-// 2*) (для тех кто осилит) сделать нормальный дин. массив у которого size и capacity не одно и тоже
-
-// 3) Реализовать задания 1.1 из задачинка
-
-import java.util.Arrays;
-
 public class DynamicArray {
     int[] value;
 
@@ -45,7 +36,6 @@ public class DynamicArray {
         value = arr2;
     }
 
-//мб не надо было, но добавил
     public void addFirst(int x) {
         if (value == null) {
             value = new int[]{x};
@@ -65,12 +55,10 @@ public class DynamicArray {
                 value = new int[]{x};
                 return;
             }
-            System.out.println("Позиция " + pos + " недопустима для null-массива");
             return;
         }
 
         if (pos < 0 || pos > value.length) {
-            System.out.println("Позиция " + pos + " вне диапазона [0, " + value.length + "]");
             return;
         }
 
@@ -90,7 +78,6 @@ public class DynamicArray {
 
     public void delLast() {
         if (value == null || value.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return;
         }
 
@@ -103,7 +90,6 @@ public class DynamicArray {
 
     public void delFirst() {
         if (value == null || value.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return;
         }
 
@@ -116,11 +102,9 @@ public class DynamicArray {
 
     public void delFromPosition(int pos) {
         if (value == null || value.length == 0) {
-            System.out.println("Массив пуст, удалять нечего");
             return;
         }
         if (pos < 0 || pos >= value.length) {
-            System.out.println("Позиция " + pos + " вне диапазона [0, " + (value.length - 1) + "]");
             return;
         }
 

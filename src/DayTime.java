@@ -5,11 +5,12 @@ public class DayTime {
         this.totalSeconds = totalSeconds;
     }
 
+    @Override
     public String toString() {
         int secondsInDay = totalSeconds % 86400;
         int h = secondsInDay / 3600;
         int m = (secondsInDay % 3600) / 60;
         int s = secondsInDay % 60;
-        return String.format("%d:%02d:%02d", h, m, s);
+        return h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
     }
 }

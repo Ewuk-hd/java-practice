@@ -91,6 +91,8 @@ class Main {
             MainTest.task1_2_3();
             MainTest.task1_2_4();
 
+            MainTest.task1_3_1();
+
 
     }
 }

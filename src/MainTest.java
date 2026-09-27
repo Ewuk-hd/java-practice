@@ -129,4 +129,31 @@ public class MainTest {
 
 
     }
+
+    public static void task1_3_1(){
+        System.out.println("=== 1.3.1 Студент ===");
+        //1. Вася
+        int [] vMarks = new int[]{3, 4, 5};
+        Student vasya = new Student("Вася", vMarks);
+        System.out.println(vasya);
+        //2. Петя с оценками васи (копировать по полю)
+        Student petya = new Student("Петя", vasya.marks);
+        System.out.println(petya);
+        //3. Замена оценки Пети
+        petya.marks[0] = 5;
+        System.out.println(petya);
+        System.out.println(vasya); //Тоже поменяется, т.к. ссылаются на один массив
+
+        //4. Андрей с независимой копией оценок
+        int [] aMarks = new int[vasya.marks.length];
+        for (int i = 0; i < vasya.marks.length; i++) {
+            aMarks[i] = vasya.marks[i];
+        }
+        Student andrey = new Student("Андрей", aMarks);
+
+        vasya.marks[1] = 2; //влепил двойку
+        System.out.println(vasya);
+        System.out.println(andrey);
+    }
 }
+

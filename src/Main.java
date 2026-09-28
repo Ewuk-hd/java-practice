@@ -92,7 +92,7 @@ class Main {
             MainTest.task1_2_4();
 
             MainTest.task1_3_1();
-
+            MainTest.task1_3_2();
 
     }
 }

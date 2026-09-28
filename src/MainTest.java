@@ -155,5 +155,28 @@ public class MainTest {
         System.out.println(vasya);
         System.out.println(andrey);
     }
+
+    public static void task1_3_2(){
+        System.out.println("===1.3.2 Ломанная линия===");
+        //1. Первая ломанная
+        Point p001 = new Point(1, 5);
+        Point p002 = new Point(2, 8);
+        Point p003 = new Point(5, 3);
+        Point [] p1 = new Point[]{p001, p002, p003};
+        PolygonalLine pl1 = new PolygonalLine(p1);
+        System.out.println(pl1.toString());
+        //2. Вторая ломанная
+        Point p004 = pl1.points[0];
+        Point p005 = new Point(6, 7);
+        Point p006 = new Point(9, 10);
+        Point p007 = pl1.points[2];
+        Point [] p2 = new Point[]{p004, p005, p006, p007};
+        PolygonalLine pl2 = new PolygonalLine(p2);
+        System.out.println(pl2);
+        //3. Сдвиг первой ломанной
+        pl1.points[0].x = 10;
+        pl1.points[0].y = 10;
+        System.out.println(pl2);
+    }
 }
 

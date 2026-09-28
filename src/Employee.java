@@ -5,6 +5,19 @@ public class Employee {
     public Employee(String name, Department department) {
         this.name = name;
         this.department = department;
+
+        if (department != null) {
+            if (department.employees == null) {
+                department.employees = new Employee[]{this};
+            } else {
+                Employee [] arr = new Employee[department.employees.length + 1];
+                for (int i = 0; i < department.employees.length; i++) {
+                    arr[i] = department.employees[i];
+                }
+                arr[arr.length - 1] = this;
+                department.employees = arr;
+            }
+        }
     }
 
     @Override

@@ -85,7 +85,6 @@ class Main {
             MainTest.task1_1_4();
             MainTest.task1_1_5();
 
-
             MainTest.task1_2_1();
             MainTest.task1_2_2();
             MainTest.task1_2_3();
@@ -93,6 +92,7 @@ class Main {
 
             MainTest.task1_3_1();
             MainTest.task1_3_2();
-
+            MainTest.task1_3_3();
+            MainTest.task1_3_4();
     }
 }

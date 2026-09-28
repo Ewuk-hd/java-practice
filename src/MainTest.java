@@ -178,5 +178,46 @@ public class MainTest {
         pl1.points[0].y = 10;
         System.out.println(pl2);
     }
+
+    public static void task1_3_3(){
+        System.out.println("=== 1.3.3 Города ===");
+        //1. Создаём все города без путей, т.к. пути ссылаются друг на друга по кругу
+        City a = new City("A", null);
+        City b = new City("B", null);
+        City c = new City("C", null);
+        City d = new City("D", null);
+        City e = new City("E", null);
+        City f = new City("F", null);
+
+        //2. Задаём пути по рисунку 1.14
+        a.ways = new Way[]{new Way(b, 5), new Way(f, 1), new Way(d, 6)};
+        b.ways = new Way[]{new Way(a, 5), new Way(c, 3)};
+        c.ways = new Way[]{new Way(b, 3), new Way(d, 4)};
+        d.ways = new Way[]{new Way(a, 6), new Way(c, 4), new Way(e, 2)};
+        e.ways = new Way[]{new Way(f, 2)};
+        f.ways = new Way[]{new Way(b, 1), new Way(e, 2)};
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(e);
+        System.out.println(f);
+    }
+
+    public static void task1_3_4(){
+        System.out.println("=== 1.3.4 Сотрудники и отделы ===");
+        Department it = new Department("IT");
+
+        Employee petrov = new Employee("Петров", it);
+        Employee kozlov = new Employee("Козлов", it);
+        Employee sidorov = new Employee("Сидоров", it);
+        it.boss = kozlov;
+
+        //Имея ссылку только на Петрова, выводим весь его отдел
+        for (int i = 0; i < petrov.department.employees.length; i++) {
+            System.out.println(petrov.department.employees[i]);
+        }
+    }
 }
 

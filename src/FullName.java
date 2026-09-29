@@ -8,6 +8,13 @@ public class FullName {
         this.firstName = firstName;
         this.patronymic = patronymic;
     }
+    public FullName(String firstName) {
+        this(null, firstName, null);
+    }
+
+    public FullName(String firstName, String lastName) {
+        this(lastName, firstName, null);
+    }
 
     @Override
     public String toString() {

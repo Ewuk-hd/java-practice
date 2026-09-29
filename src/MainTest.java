@@ -256,5 +256,18 @@ public class MainTest {
         System.out.println(h2);
         System.out.println(h3);
     }
+
+    public static void task1_4_5(){
+        System.out.println("=== 1.4.5 Даем имена ===");
+        FullName cleopatra = new FullName("Клеопатра");
+        FullName pushkin = new FullName("Пушкин", "Александр", "Сергеевич");
+        FullName mayakovsky = new FullName("Владимир", "Маяковский");
+        FullName christophor = new FullName("Христофор", "Бонифатьевич");
+        System.out.println(cleopatra);
+        System.out.println(pushkin);
+        System.out.println(mayakovsky);
+        System.out.println(christophor);
+    }
+
 }
 

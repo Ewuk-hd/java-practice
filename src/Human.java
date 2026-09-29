@@ -3,15 +3,30 @@ public class Human {
     int height;
     Human father;
 
-    public Human(FullName name, int height) {
-        this.name = name;
-        this.height = height;
+    public Human(FullName name, int height){
+        this(name, height, null);
     }
 
     public Human(FullName name, int height, Human father) {
         this.name = name;
         this.height = height;
         this.father = father;
+    }
+
+    public Human(String name){
+        this(new FullName(name));
+    }
+
+    public Human(FullName name){
+        this(name, null);
+    }
+
+    public Human(String name, Human father){
+        this(new FullName(name), father);
+    }
+
+    public Human(FullName name, Human father){
+        this(name, 0, father);
     }
 
     @Override

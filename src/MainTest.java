@@ -269,5 +269,15 @@ public class MainTest {
         System.out.println(christophor);
     }
 
+    public static void task1_4_6(){
+        System.out.println("=== 1.4.6 Создаем Человека ===");
+        Human lev = new Human("Лев");
+        Human sergey = new Human(new FullName("Сергей", "Пушкин"), lev);
+        Human alexander = new Human("Александр", sergey);
+        System.out.println(lev);
+        System.out.println(sergey);
+        System.out.println(alexander);
+    }
+
 }
 

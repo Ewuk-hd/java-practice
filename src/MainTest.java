@@ -246,5 +246,15 @@ public class MainTest {
         PolygonalLine pl = new PolygonalLine(new Point(3, 5), new Point(25, 6), new Point(7, 8));
         System.out.println(pl);
     }
+
+    public static void task1_4_4(){
+        System.out.println("=== 1.4.4 Строим Дом (final) ===");
+        FinalHouse h1 = new FinalHouse(2);
+        FinalHouse h2 = new FinalHouse(35);
+        FinalHouse h3 = new FinalHouse(91);
+        System.out.println(h1);
+        System.out.println(h2);
+        System.out.println(h3);
+    }
 }
 

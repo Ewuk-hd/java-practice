@@ -1,0 +1,13 @@
+public class FinalHouse {
+    final int floors;
+
+    public FinalHouse(int floors) {
+        this.floors = floors;
+    }
+
+    @Override
+    public String toString() {
+        String ending = (floors % 10 == 1 && floors % 100 != 11) ? "этажом" : "этажами";
+        return "дом с " + floors + " " + ending;
+    }
+}

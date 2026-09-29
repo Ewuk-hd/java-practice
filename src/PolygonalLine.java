@@ -1,7 +1,11 @@
 public class PolygonalLine {
     Point [] points;
 
-    public PolygonalLine(Point [] points){
+    public PolygonalLine(){
+        this.points = new Point[0];
+    }
+
+    public PolygonalLine(Point... points){
         this.points = points;
     }
 

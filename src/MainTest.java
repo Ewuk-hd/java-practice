@@ -219,5 +219,32 @@ public class MainTest {
             System.out.println(petrov.department.employees[i]);
         }
     }
+
+    public static void task1_4_1(){
+        //Уже выполнено в 1.1.1
+        System.out.println("=== 1.4.1 Точки с обяз указанием XY ===");
+        Point p008 = new Point(3, 5);
+        Point p009 = new Point(25, 6);
+        Point p010 = new Point(7, 8);
+        System.out.println(p008 + "\n" + p009 + "\n" + p009);
+    }
+
+    public static void task1_4_2(){
+        System.out.println("=== 1.4.2 Конструкторы с разными параметрами (Линия) ===");
+        Line line1 = new Line(new Point(1, 3), new Point(23, 8));
+        Line line2 = new Line(5, 10, 25, 10);
+        Line line3 = new Line(line1.start, line2.end);
+        System.out.println(line1);
+        System.out.println(line2);
+        System.out.println(line3);
+    }
+
+    public static void task1_4_3(){
+        System.out.println("=== 1.4.3 Рисуем Ломаную линию ===");
+        PolygonalLine empty = new PolygonalLine();
+        System.out.println(empty);
+        PolygonalLine pl = new PolygonalLine(new Point(3, 5), new Point(25, 6), new Point(7, 8));
+        System.out.println(pl);
+    }
 }
 

@@ -279,5 +279,21 @@ public class MainTest {
         System.out.println(alexander);
     }
 
+    public  static void task1_4_7(){
+        Student vasya = new Student("Вася", 3, 4, 5);
+        Student maxim = new Student("Максим");
+        System.out.println(vasya);
+        System.out.println(maxim);
+    }
+
+    public static void task1_4_8(){
+        System.out.println("=== 1.4.8 Основываем Города ===");
+        City b = new City("B");
+        City e = new City("E");
+        City f = new City("F", new Way(b, 1), new Way(e, 2));
+        System.out.println(b);
+        System.out.println(f);
+    }
+
 }
 

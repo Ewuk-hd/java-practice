@@ -1,7 +1,7 @@
 public class Line {
     private static final Point DEFAULT_POINT = new Point(0,0);
-    Point start;
-    Point end;
+    private Point start;
+    private Point end;
 
     public Line(int x1, int y1, int x2, int y2) {
         this.start = new Point(x1, y1);
@@ -33,7 +33,7 @@ public class Line {
     }
 
     public void setEnd(int x, int y){
-        this.setEnd(new Point(x, y));
+        this.end = new Point(x, y);
     }
 
     public Point getStart() {
@@ -49,8 +49,8 @@ public class Line {
     }
 
     public double length1(){
-        int kat1 = getEnd().x-getStart().x;
-        int kat2 = getEnd().y-getStart().y;
+        int kat1 = getEnd().getX()-getStart().getX();
+        int kat2 = getEnd().getY()-getStart().getY();
         double len = Math.sqrt(kat1*kat1 + kat2*kat2);
         return len;
     }

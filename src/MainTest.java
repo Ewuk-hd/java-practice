@@ -67,6 +67,7 @@ public class MainTest {
         System.out.println(line1);
         System.out.println(line2);
         System.out.println(line3);
+        System.out.println(line3.length1());
 
         // 4. Меняем координаты самих точек, поэтому линия 3 меняется вместе с ними
         System.out.println("-- меняем координаты точек линий 1 и 2 --");

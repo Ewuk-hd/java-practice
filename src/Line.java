@@ -1,14 +1,58 @@
 public class Line {
+    private static final Point DEFAULT_POINT = new Point(0,0);
     Point start;
     Point end;
 
-    public Line(Point start, Point end) {
-        this.start = start;
-        this.end = end;
+    public Line(int x1, int y1, int x2, int y2) {
+        this.start = new Point(x1, y1);
+        this.end = new Point(x2, y2);
     }
 
-    public Line(int x1, int y1, int x2, int y2) {
-        this(new Point(x1, y1), new Point(x2, y2));
+    public Line(Point start, Point end) {
+        this(check(start).getX(), check(start).getY(), check(end).getX(), check(end).getY());
+    }
+
+    public Line(Line line){
+        this(line.start, line.end);
+    }
+
+    private static Point check(Point point){
+        if (point == null){
+            return DEFAULT_POINT;
+        }
+        else return point;
+    }
+
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setEnd(Point end) {
+        this.setEnd(check(end).getX(), check(end).getY());
+    }
+
+    public void setEnd(int x, int y){
+        this.setEnd(new Point(x, y));
+    }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.setStart(check(start).getX(), check(start).getY());
+    }
+
+    public void setStart(int x, int y){
+        this.start = new Point(x, y);
+    }
+
+    public double length1(){
+        int kat1 = getEnd().x-getStart().x;
+        int kat2 = getEnd().y-getStart().y;
+        double len = Math.sqrt(kat1*kat1 + kat2*kat2);
+        return len;
     }
 
     @Override

@@ -1,8 +1,15 @@
 public class FinalHouse {
-    final int floors;
+    private final int floors;
 
     public FinalHouse(int floors) {
+        if (floors <= 0){
+            throw new IllegalArgumentException("Количество этажей должно быть больше нуля: " + floors);
+        }
         this.floors = floors;
+    }
+
+    public int getFloors() {
+        return floors;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Line {
 
 
     public Point getEnd() {
-        return end;
+        return new Point(end);
     }
 
     public void setEnd(Point end) {
@@ -37,7 +37,7 @@ public class Line {
     }
 
     public Point getStart() {
-        return start;
+        return new Point(start);
     }
 
     public void setStart(Point start) {

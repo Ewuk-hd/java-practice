@@ -74,5 +74,145 @@ public class MainTest {
         System.out.println(f);
     }
 
-}
+    public static void task1_5_1(){
+        System.out.println("=== 1.5.1 Пистолет стреляет ===");
+        Gun gun = new Gun(3);
+        for (int i = 0; i < 5; i++){
+            gun.shoot();
+        }
+    }
 
+    public static void task1_5_2(){
+        System.out.println("=== 1.5.2 Кот мяукает ===");
+        Cat barsik = new Cat("Барсик");
+        System.out.println(barsik);
+        barsik.meow();
+        barsik.meow(3);
+    }
+
+    public static void task1_5_3(){
+        System.out.println("=== 1.5.3 Длина Линии ===");
+        Line line = new Line(1, 1, 10, 15);
+        System.out.println((int) line.length1());
+    }
+
+    public static void task1_5_4(){
+        System.out.println("=== 1.5.4 Отец моего отца ===");
+        Human ivan = new Human(new FullName("Иван", "Чудов"));
+        Human petr = new Human("Петр", ivan);
+        Human boris = new Human("Борис", petr);
+        System.out.println(ivan);
+        System.out.println(petr);
+        System.out.println(boris);
+    }
+    public static void task1_5_5(){
+        System.out.println("=== 1.5.5 Дроби ===");
+        Fraction f1 = new Fraction(1, 3);
+        Fraction f2 = new Fraction(2, 3);
+        Fraction f3 = new Fraction(3, 4);
+
+        System.out.println(f1 + " + " + f2 + " = " + f1.sum(f2));
+        System.out.println(f1 + " - " + f3 + " = " + f1.minus(f3));
+        System.out.println(f1 + " * " + f2 + " = " + f1.mul(f2));
+        System.out.println(f2 + " : " + f3 + " = " + f2.div(f3));
+
+        System.out.println(f1 + " + 2 = " + f1.sum(2));
+        System.out.println(f1 + " - 1 = " + f1.minus(1));
+        System.out.println(f2 + " * 3 = " + f2.mul(3));
+        System.out.println(f3 + " : 2 = " + f3.div(2));
+
+        System.out.println("(" + f1 + " + " + f2 + ") : " + f3 + " - 5 = " + f1.sum(f2).div(f3).minus(5));
+    }
+
+    public static void task1_5_6(){
+        System.out.println("=== 1.5.6 Студент отличник ===");
+        Student vasya = new Student("Вася", 3, 4, 5, 4);
+        Student petya = new Student("Петя", 5, 5, 5, 5);
+        System.out.println(vasya + " средний балл: " + vasya.getAverage() + ", отличник: " + vasya.isExcellent());
+        System.out.println(petya + " средний балл: " + petya.getAverage() + ", отличник: " + petya.isExcellent());
+    }
+
+    public static void task1_5_7(){
+        System.out.println("=== 1.5.7 Длина Ломаной ===");
+        PolygonalLine pl = new PolygonalLine(new Point(1, 5), new Point(2, 8), new Point(5, 3));
+        System.out.println(pl.getLength());
+        pl.addPoints(new Point(5, 15), new Point(8, 10));
+        System.out.println(pl.getLength());
+    }
+
+    public static void task1_6_1(){
+        System.out.println("=== 1.6.1 Дом над землей ===");
+        System.out.println(new FinalHouse(5));
+        System.out.println(new FinalHouse(1));
+        System.out.println(new FinalHouse(-3));   //выбросит IllegalArgumentException, программа остановится
+    }
+
+    public static void task1_6_2(){
+        System.out.println("=== 1.6.2 Непустые Имена ===");
+        System.out.println(new FullName("Клеопатра"));
+        System.out.println(new FullName("", "Владимир", null));   //пустая фамилия просто не учитывается
+        new FullName(null, "", null);   //выбросит IllegalArgumentException: все части пустые
+    }
+
+    public static void task1_6_4(){
+        System.out.println("=== 1.6.4 Дроби ===");
+        Fraction f1 = new Fraction(1, -2);
+        Fraction f2 = new Fraction(-3, -4);
+        Fraction f3 = new Fraction(1, 2);
+        Fraction f4 = new Fraction(-1, 3);
+        System.out.println("1/-2 -> " + f1);
+        System.out.println("-3/-4 -> " + f2);
+        System.out.println(f3 + " : " + f4 + " = " + f3.div(f4));
+        System.out.println(f1 + " - " + f2 + " = " + f1.minus(f2));
+        //new Fraction(1, 0);   //выбросит IllegalArgumentException: знаменатель 0
+    }
+
+    public static void task1_6_6(){
+        System.out.println("=== 1.6.6 Отдельные линии ===");
+        Line line1 = new Line(1, 1, 5, 5);
+        Line line2 = new Line(line1.getStart(), line1.getEnd());   //те же координаты, но свои точки
+        line1.setStart(0, 0);                                      //меняем только line1
+        System.out.println(line1);
+        System.out.println(line2);                                 //осталась {1;1} - {5;5}
+
+        Point p = line2.getStart();                                //копия, а не точка внутри line2
+        p.setX(100);
+        System.out.println(line2);                                 //не изменилась
+        System.out.println("Начало line1: " + line1.getStart() + ", конец: " + line1.getEnd());
+    }
+
+    public static void task1_6_7(){
+        System.out.println("=== 1.6.7 Родители остаются ===");
+        Human ivan = new Human(new FullName("Иван", "Чудов"));
+        Human petr = new Human("Петр", ivan);
+        System.out.println(petr);
+        System.out.println("Отец: " + petr.getFather());
+        System.out.println("Имя: " + petr.getName());
+        //petr.father = new Human("Другой");   //ошибка компиляции: поле private final
+    }
+
+    public static void task1_6_8(){
+        System.out.println("=== 1.6.8 Диапазон оценок ===");
+        Student vasya = new Student("Вася", 3, 4, 5);
+        vasya.addMark(2);
+        System.out.println(vasya);
+        System.out.println(ArrayUtils.arrToString(vasya.getMarks()));   //список оценок можно получить всегда
+        //vasya.addMark(7);                  //выбросит IllegalArgumentException
+        //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
+    }
+
+    public static void task1_6_10(){
+        System.out.println("=== 1.6.10 Начальник отдела ===");
+        Department it = new Department("IT");
+        Department hr = new Department("HR");
+        Employee petrov = new Employee("Петров", it);
+        Employee kozlov = new Employee("Козлов", it);
+        Employee ivanova = new Employee("Иванова", hr);
+
+        it.setBoss(kozlov);          //Козлов из IT - назначен
+        it.setBoss(ivanova);         //Иванова из HR - не назначена, исключения нет
+        System.out.println(petrov);
+        System.out.println(kozlov);
+        System.out.println(ivanova);
+    }
+}

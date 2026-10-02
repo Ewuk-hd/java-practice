@@ -1,23 +1,25 @@
 public class Employee {
-    String name;
-    Department department;
+    private String name;
+    private final Department department;
 
     public Employee(String name, Department department) {
         this.name = name;
         this.department = department;
-
         if (department != null) {
-            if (department.employees == null) {
-                department.employees = new Employee[]{this};
-            } else {
-                Employee [] arr = new Employee[department.employees.length + 1];
-                for (int i = 0; i < department.employees.length; i++) {
-                    arr[i] = department.employees[i];
-                }
-                arr[arr.length - 1] = this;
-                department.employees = arr;
-            }
+            department.addEmployee(this);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 
     @Override
@@ -26,16 +28,16 @@ public class Employee {
             return name + " не работает ни в одном отделе";
         }
 
-        String title = department.title != null ? department.title : "без названия";
+        String title = department.getTitle() != null ? department.getTitle() : "без названия";
 
-        if (department.boss == this) {
+        if (department.getBoss() == this) {
             return name + " начальник отдела " + title;
         }
 
         String result = name + " работает в отделе " + title;
-        if (department.boss == null) {
+        if (department.getBoss() == null) {
             return result + ", начальник которого не назначен";
         }
-        return result + ", начальник которого " + department.boss.name;
+        return result + ", начальник которого " + department.getBoss().getName();
     }
 }

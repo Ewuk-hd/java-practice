@@ -1,13 +1,16 @@
 public class Human {
-    FullName name;
-    int height;
-    Human father;
+    private FullName name;
+    private int height;
+    private final Human father;
 
     public Human(FullName name, int height){
         this(name, height, null);
     }
 
     public Human(FullName name, int height, Human father) {
+        if (height < 0){
+            throw new IllegalArgumentException("Рост не может быть отрицательным: " + height);
+        }
         this.name = name;
         this.height = height;
         this.father = father;
@@ -29,30 +32,58 @@ public class Human {
         this(name, 0, father);
     }
 
+    public FullName getName(){ //1.6.7
+        return name;
+    }
+
+    public void setName(FullName name){
+        this.name = name;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
+    public void setHeight(int height){
+        if (height < 0){
+            throw new IllegalArgumentException("Рост не может быть отрицательным: " + height);
+        }
+        this.height = height;
+    }
+
+    public Human getFather(){
+        return father;
+    }
+
+    public String getFirstName(){
+        if (name == null){
+            return null;
+        }
+        return name.getFirstName();
+    }
+
+    public String getPatronymic(){
+        if (name != null && name.getPatronymic() != null){
+            return name.getPatronymic();
+        }
+        if (father != null && father.getFirstName() != null){
+            return father.getFirstName() + "ович";
+        }
+        return null;
+    }
+
+    public String getLastName(){
+        if (name != null && name.getLastName() != null){
+            return name.getLastName();
+        }
+        if (father == null){
+            return null;
+        }
+        return father.getLastName();
+    }
+
     @Override
     public String toString() {
-        String lastName = null;
-        String firstName = null;
-        String patronymic = null;
-
-        if (name != null) {
-            lastName = name.lastName;
-            firstName = name.firstName;
-            patronymic = name.patronymic;
-        }
-
-        // Фамилия берётся у отца, если своей нет
-        if (lastName == null && father != null && father.name != null) {
-            lastName = father.name.lastName;
-        }
-
-        // Отчество строится из имени отца, если своего нет
-        if (patronymic == null && father != null && father.name != null
-                && father.name.firstName != null) {
-            patronymic = father.name.firstName + "ович";
-        }
-
-        // Собираем новый объект, не меняя поля текущего человека
-        return new FullName(lastName, firstName, patronymic).toString();
+        return new FullName(getLastName(), getFirstName(), getPatronymic()).toString();
     }
 }

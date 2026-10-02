@@ -1,7 +1,21 @@
 public class DayTime {
-    int totalSeconds;
+    private int totalSeconds;
 
     public DayTime(int totalSeconds) {
+        if (totalSeconds < 0) {
+            throw new IllegalArgumentException("Время не может быть отрицательным: " + totalSeconds);
+        }
+        this.totalSeconds = totalSeconds;
+    }
+
+    public int getTotalSeconds() {
+        return totalSeconds;
+    }
+
+    public void setTotalSeconds(int totalSeconds) {
+        if (totalSeconds < 0) {
+            throw new IllegalArgumentException("Время не может быть отрицательным: " + totalSeconds);
+        }
         this.totalSeconds = totalSeconds;
     }
 

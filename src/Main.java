@@ -8,8 +8,23 @@ class Main {
             MainTest.task1_4_6();
             MainTest.task1_4_7();
             MainTest.task1_4_8();
+            MainTest.task1_5_1();
+            MainTest.task1_5_2();
+            MainTest.task1_5_3();
+            MainTest.task1_5_4();
+            MainTest.task1_5_5();
+            MainTest.task1_5_6();
+            MainTest.task1_5_7();
 
+            MainTest.task1_6_2();
 
+            MainTest.task1_6_4();
+
+            MainTest.task1_6_6();
+            MainTest.task1_6_7();
+            MainTest.task1_6_8();
+            MainTest.task1_6_10();
+            MainTest.task1_6_1();   //выбрасывает исключение - держать последним
     }
 
 }

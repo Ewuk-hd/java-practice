@@ -1,7 +1,21 @@
 public class House {
-    int floors;
+    private int floors;
 
     public House(int floors) {
+        if (floors <= 0) {
+            throw new IllegalArgumentException("Количество этажей должно быть больше нуля: " + floors);
+        }
+        this.floors = floors;
+    }
+
+    public int getFloors() {
+        return floors;
+    }
+
+    public void setFloors(int floors) {
+        if (floors <= 0) {
+            throw new IllegalArgumentException("Количество этажей должно быть больше нуля: " + floors);
+        }
         this.floors = floors;
     }
 

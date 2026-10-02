@@ -15,16 +15,18 @@ class Main {
             MainTest.task1_5_5();
             MainTest.task1_5_6();
             MainTest.task1_5_7();
-
-            MainTest.task1_6_2();
+            MainTest.task1_5_8();
 
             MainTest.task1_6_4();
-
+            MainTest.task1_6_5();
             MainTest.task1_6_6();
             MainTest.task1_6_7();
             MainTest.task1_6_8();
             MainTest.task1_6_10();
-            MainTest.task1_6_1();   //выбрасывает исключение - держать последним
+            MainTest.task1_6_9();
+            MainTest.task1_6_3();
+            MainTest.task1_6_1();   //выбрасывает исключение
+            MainTest.task1_6_2();   //выбрасывает исключение
     }
 
 }

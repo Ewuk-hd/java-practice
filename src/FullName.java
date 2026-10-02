@@ -4,7 +4,7 @@ public class FullName {
     private final String patronymic;
 
     public FullName(String lastName, String firstName, String patronymic) {
-        if (isNullOrEmpty(lastName) && isNullOrEmpty(firstName) && isNullOrEmpty(patronymic)) {
+        if ( isNullOrEmpty(firstName) && isNullOrEmpty(lastName) && isNullOrEmpty(patronymic)) {
             throw new IllegalArgumentException("Хотя бы одна часть имени должна быть заполнена");
         }
         this.lastName = isNullOrEmpty(lastName) ? null : lastName;          //пустую строку храним как null,

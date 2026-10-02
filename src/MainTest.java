@@ -140,11 +140,28 @@ public class MainTest {
         System.out.println(pl.getLength());
     }
 
+    public static void task1_5_8(){
+        System.out.println("=== 1.5.8 Квадрат ===");
+        //1. Создать квадрат
+        Square sq = new Square(new Point(5, 3), 23);
+        System.out.println(sq);
+        //2. Присвоить в ссылку типа Ломаная результат sq.getPL();
+        PolygonalLine sqPL = sq.getPL();
+        System.out.println(sqPL);
+        //3. Вывести длину ломаной
+        System.out.println(sqPL.getLength());
+        //4. Сместить последнюю точку ломаной
+        sqPL.setPoint(sqPL.getPoints().length - 1, new Point(15, 25));
+        System.out.println(sqPL);
+        //5. Снова вывести длину
+        System.out.println(sqPL.getLength());
+    }
+
     public static void task1_6_1(){
         System.out.println("=== 1.6.1 Дом над землей ===");
         System.out.println(new FinalHouse(5));
         System.out.println(new FinalHouse(1));
-        System.out.println(new FinalHouse(-3));   //выбросит IllegalArgumentException, программа остановится
+        //System.out.println(new FinalHouse(-3));   //выбросит IllegalArgumentException, программа остановится
     }
 
     public static void task1_6_2(){
@@ -152,6 +169,20 @@ public class MainTest {
         System.out.println(new FullName("Клеопатра"));
         System.out.println(new FullName("", "Владимир", null));   //пустая фамилия просто не учитывается
         new FullName(null, "", null);   //выбросит IllegalArgumentException: все части пустые
+    }
+
+    public static void task1_6_3(){
+        System.out.println("=== 1.6.3 Сторона Квадрата ===");
+        Square sq = new Square(5, 3, 10);
+        System.out.println(sq);
+        System.out.println("Сторона: " + sq.getSide());
+
+        sq.setSide(20);
+        System.out.println(sq);
+        System.out.println("Сторона: " + sq.getSide());
+
+        //new Square(5, 3, 0);                   //выбросит IllegalArgumentException при создании
+        //sq.setSide(-5);                          //выбросит IllegalArgumentException при изменении
     }
 
     public static void task1_6_4(){
@@ -165,6 +196,21 @@ public class MainTest {
         System.out.println(f3 + " : " + f4 + " = " + f3.div(f4));
         System.out.println(f1 + " - " + f2 + " = " + f1.minus(f2));
         //new Fraction(1, 0);   //выбросит IllegalArgumentException: знаменатель 0
+    }
+
+    public static void task1_6_5(){
+        System.out.println("=== 1.6.5 Перезарядка Пистолета ===");
+        Gun gun = new Gun(7, 0);
+        gun.reload(3);
+        for (int i = 0; i < 5; i++){
+            gun.shoot();
+        }
+        System.out.println("Лишних: " + gun.reload(8));
+        gun.shoot();
+        gun.shoot();
+        System.out.println("Разряжено: " + gun.unload());
+        gun.shoot();
+        System.out.println("Заряжен: " + gun.isLoaded());
     }
 
     public static void task1_6_6(){
@@ -214,5 +260,21 @@ public class MainTest {
         System.out.println(petrov);
         System.out.println(kozlov);
         System.out.println(ivanova);
+    }
+
+    public static void task1_6_9(){
+        System.out.println("=== 1.6.9 Дороги ===");
+        City b = new City("B");
+        City c = new City("C");
+        City d = new City("D");
+        City a = new City("A", new Way(b, 5), new Way(c, 3), new Way(b, 7));   //вторая дорога в B обновит стоимость
+        System.out.println(a);
+
+        a.addWay(c, 10);       //дорога в C уже есть - стоимость обновится
+        a.addWay(d, 4);        //новая дорога
+        System.out.println(a);
+
+        a.removeWay(b);        //удаляем дорогу в B
+        System.out.println(a);
     }
 }

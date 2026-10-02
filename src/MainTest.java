@@ -216,14 +216,14 @@ public class MainTest {
     public static void task1_6_6(){
         System.out.println("=== 1.6.6 Отдельные линии ===");
         Line line1 = new Line(1, 1, 5, 5);
-        Line line2 = new Line(line1.getStart(), line1.getEnd());   //те же координаты, но свои точки
-        line1.setStart(0, 0);                                      //меняем только line1
+        Line line2 = new Line(line1.getStart(), line1.getEnd());
+        line1.setStart(0, 0);
         System.out.println(line1);
-        System.out.println(line2);                                 //осталась {1;1} - {5;5}
+        System.out.println(line2);
 
-        Point p = line2.getStart();                                //копия, а не точка внутри line2
+        Point p = line2.getStart();
         p.setX(100);
-        System.out.println(line2);                                 //не изменилась
+        System.out.println(line2);
         System.out.println("Начало line1: " + line1.getStart() + ", конец: " + line1.getEnd());
     }
 
@@ -242,7 +242,7 @@ public class MainTest {
         Student vasya = new Student("Вася", 3, 4, 5);
         vasya.addMark(2);
         System.out.println(vasya);
-        System.out.println(ArrayUtils.arrToString(vasya.getMarks()));   //список оценок можно получить всегда
+        System.out.println(ArrayUtils.arrToString(vasya.getMarks()));
         //vasya.addMark(7);                  //выбросит IllegalArgumentException
         //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
     }
@@ -255,8 +255,8 @@ public class MainTest {
         Employee kozlov = new Employee("Козлов", it);
         Employee ivanova = new Employee("Иванова", hr);
 
-        it.setBoss(kozlov);          //Козлов из IT - назначен
-        it.setBoss(ivanova);         //Иванова из HR - не назначена, исключения нет
+        it.setBoss(kozlov);
+        it.setBoss(ivanova);
         System.out.println(petrov);
         System.out.println(kozlov);
         System.out.println(ivanova);
@@ -267,14 +267,14 @@ public class MainTest {
         City b = new City("B");
         City c = new City("C");
         City d = new City("D");
-        City a = new City("A", new Way(b, 5), new Way(c, 3), new Way(b, 7));   //вторая дорога в B обновит стоимость
+        City a = new City("A", new Way(b, 5), new Way(c, 3), new Way(b, 7));
         System.out.println(a);
 
-        a.addWay(c, 10);       //дорога в C уже есть - стоимость обновится
-        a.addWay(d, 4);        //новая дорога
+        a.addWay(c, 10);
+        a.addWay(d, 4);
         System.out.println(a);
 
-        a.removeWay(b);        //удаляем дорогу в B
+        a.removeWay(b);
         System.out.println(a);
     }
 }

@@ -34,6 +34,14 @@ public class Department {
     }
 
     public void addEmployee(Employee employee) {
+        if (employee == null || employee.getDepartment() != this) {
+            return;
+        }
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == employee) {
+                return;
+            }
+        }
         Employee [] arr = new Employee[employees.length + 1];
         for (int i = 0; i < employees.length; i++) {
             arr[i] = employees[i];

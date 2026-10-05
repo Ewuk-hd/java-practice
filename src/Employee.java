@@ -1,43 +1,67 @@
 public class Employee {
     private String name;
-    private final Department department;
+    private Department department;
 
-    public Employee(String name, Department department) {
+    public Employee(String name){
+        this(name, null);
+    }
+
+    public Employee(String name, Department department){
+        if (name == null) throw new IllegalStateException();
         this.name = name;
         this.department = department;
+    }
+
+    public void getInfo(){
+        if (department != null){
+            if (department.getDepartmentHead()!=null && name.equals(department.getDepartmentHead())){
+                System.out.printf("%s начальник отдела %s\n", name, department.getDepartmentName());
+            }
+            else {
+                System.out.printf("%s работает в отделе %s, начальник которого %s\n", name,
+                        department.getDepartmentName(),
+                        department.getDepartmentHead());
+            }
+        }
+    }
+
+    public Department getDepartment(){
+        return department;
+    }
+
+    public void setDepartment(Department department){
+        if (this.department == department) return;
+        Department old = this.department;
+        this.department = department;
+        if (old != null) {
+            old.removeEmployee(this);
+            if (old.getDepartmentHead() == this){
+                old.setDepartmentHead(null);
+            }
+        }
         if (department != null) {
             department.addEmployee(this);
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public void setName(String name){
+        if (name == null) this.name = "unknown";
         this.name = name;
     }
 
-    public Department getDepartment() {
-        return department;
+    public String getName(){
+        return name;
     }
-
     @Override
     public String toString() {
-        if (department == null) {
-            return name + " не работает ни в одном отделе";
+        String dep = "";
+        String boss = "";
+        if (department == null){
+            return name + " без отдела";
         }
-
-        String title = department.getTitle() != null ? department.getTitle() : "без названия";
-
-        if (department.getBoss() == this) {
-            return name + " начальник отдела " + title;
+        if (this == department.getDepartmentHead()){
+            return name + " начальник отдела " + department.getDepartmentName();
         }
-
-        String result = name + " работает в отделе " + title;
-        if (department.getBoss() == null) {
-            return result + ", начальник которого не назначен";
-        }
-        return result + ", начальник которого " + department.getBoss().getName();
+        return name + " работает в " + department;
     }
 }

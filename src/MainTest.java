@@ -151,7 +151,7 @@ public class MainTest {
         //3. Вывести длину ломаной
         System.out.println(sqPL.getLength());
         //4. Сместить последнюю точку ломаной
-        sqPL.setPoint(sqPL.getPoints().length - 1, new Point(15, 25));
+        sqPL.setPoint(sqPL.getPoints().size() - 1, new Point(15, 25));
         System.out.println(sqPL);
         //5. Снова вывести длину
         System.out.println(sqPL.getLength());
@@ -242,7 +242,7 @@ public class MainTest {
         Student vasya = new Student("Вася", 3, 4, 5);
         vasya.addMark(2);
         System.out.println(vasya);
-        System.out.println(ArrayUtils.arrToString(vasya.getMarks()));
+        System.out.println(vasya.getMarks());
         //vasya.addMark(7);                  //выбросит IllegalArgumentException
         //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
     }
@@ -251,15 +251,19 @@ public class MainTest {
         System.out.println("=== 1.6.10 Начальник отдела ===");
         Department it = new Department("IT");
         Department hr = new Department("HR");
-        Employee petrov = new Employee("Петров", it);
-        Employee kozlov = new Employee("Козлов", it);
-        Employee ivanova = new Employee("Иванова", hr);
+        Employee petrov = new Employee("Петров");
+        Employee kozlov = new Employee("Козлов");
+        petrov.setDepartment(it);
+        kozlov.setDepartment(it);
 
-        it.setBoss(kozlov);
-        it.setBoss(ivanova);
+        it.setDepartmentHead(kozlov);          //Козлов - начальник IT
         System.out.println(petrov);
         System.out.println(kozlov);
-        System.out.println(ivanova);
+
+        kozlov.setDepartment(hr);              //начальник переходит в HR - в IT начальника больше нет
+        System.out.println(petrov);
+        System.out.println(kozlov);
+        System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
     }
 
     public static void task1_6_9(){

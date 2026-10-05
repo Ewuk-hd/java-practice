@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class City {
     private String name;
-    private Way [] ways;
+    private ArrayList<Way> ways;
 
     public City(String name, Way... ways){
         this.name = name;
-        this.ways = new Way[0];
+        this.ways = new ArrayList<>();
         if (ways != null){
             for (int i = 0; i < ways.length; i++){
                 addWay(ways[i].getCityTo(), ways[i].getCost());
@@ -20,12 +22,12 @@ public class City {
         this.name = name;
     }
 
-    public Way[] getWays(){
-        return copy(ways);
+    public ArrayList<Way> getWays(){
+        return new ArrayList<>(ways);
     }
 
     public void setWays(Way... ways){
-        this.ways = new Way[0];
+        this.ways = new ArrayList<>();
         if (ways != null){
             for (int i = 0; i < ways.length; i++){
                 addWay(ways[i].getCityTo(), ways[i].getCost());
@@ -34,57 +36,26 @@ public class City {
     }
 
     public void addWay(City cityTo, int cost){
-        for (int i = 0; i < ways.length; i++){
-            if (ways[i].getCityTo() == cityTo){
-                ways[i] = new Way(cityTo, cost);      //дорога уже есть - обновляем стоимость
+        for (int i = 0; i < ways.size(); i++){
+            if (ways.get(i).getCityTo() == cityTo){
+                ways.set(i, new Way(cityTo, cost));
                 return;
             }
         }
-        Way [] arr = new Way[ways.length + 1];        //дороги нет - добавляем в конец
-        for (int i = 0; i < ways.length; i++){
-            arr[i] = ways[i];
-        }
-        arr[arr.length - 1] = new Way(cityTo, cost);
-        ways = arr;
+        ways.add(new Way(cityTo, cost));
     }
 
     public void removeWay(City cityTo){
-        int index = -1;
-        for (int i = 0; i < ways.length; i++){
-            if (ways[i].getCityTo() == cityTo){
-                index = i;
+        for (int i = 0; i < ways.size(); i++){
+            if (ways.get(i).getCityTo() == cityTo){
+                ways.remove(i);
+                return;
             }
         }
-        if (index == -1){
-            return;                                   //такой дороги нет - удалять нечего
-        }
-        Way [] arr = new Way[ways.length - 1];        //повторов нет, значит удаляем ровно одну
-        for (int i = 0; i < arr.length; i++){
-            arr[i] = i < index ? ways[i] : ways[i + 1];   //после удалённой берём со сдвигом на 1
-        }
-        ways = arr;
-    }
-
-    private static Way[] copy(Way[] arr){
-        if (arr == null){
-            return new Way[0];
-        }
-        Way [] result = new Way[arr.length];
-        for (int i = 0; i < arr.length; i++){
-            result[i] = arr[i];
-        }
-        return result;
     }
 
     @Override
     public String toString(){
-        String result = name + " [";
-        for (int i = 0; i < ways.length; i++){
-            if (i > 0){
-                result += ", ";
-            }
-            result += ways[i];
-        }
-        return result + "]";
+        return name + " " + ways;
     }
 }

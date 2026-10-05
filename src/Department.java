@@ -1,52 +1,62 @@
+import java.util.ArrayList;
+
 public class Department {
-    private String title;
-    private Employee boss;
-    private Employee [] employees = new Employee[0];
+    private String departmentName;
+    private Employee departmentHead;
+    private ArrayList<Employee> employees;
 
-    public Department(String title) {
-        this.title = title;
+    public Department(){
+        employees = new ArrayList<>();
     }
 
-    public String getTitle() {
-        return title;
+    public Department(String departmentName){
+        employees = new ArrayList<>();
+        this.departmentName = departmentName;
+        this.departmentHead = null;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Department(String departmentName, Employee departmentHead){
+        employees = new ArrayList<>();
+        this.departmentName = departmentName;
+        this.departmentHead = departmentHead;
     }
 
-    public Employee getBoss() {
-        return boss;
+    public String getDepartmentName(){
+        return departmentName;
     }
 
-    public void setBoss(Employee boss) {
-        if (boss == null || boss.getDepartment() == this) {
-            this.boss = boss;
-        }
+    public Employee getDepartmentHead(){
+        return departmentHead;
     }
 
-    public Employee[] getEmployees() {
-        Employee [] copy = new Employee[employees.length];
-        for (int i = 0; i < employees.length; i++) {
-            copy[i] = employees[i];
-        }
-        return copy;
+    public ArrayList<Employee> getEmployees(){
+        return new ArrayList<>(employees);
+    }
+
+    public void setDepartmentHead(Employee name){
+        this.departmentHead = name;
+    }
+
+
+    public void removeEmployee(Employee employee){
+        employees.remove(employee);
     }
 
     public void addEmployee(Employee employee) {
-        if (employee == null || employee.getDepartment() != this) {
-            return;
+        if (employee == null || employees.contains(employee)) return;
+        employees.add(employee);
+        if (employee.getDepartment() != this) {
+            employee.setDepartment(this);
         }
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] == employee) {
-                return;
-            }
-        }
-        Employee [] arr = new Employee[employees.length + 1];
-        for (int i = 0; i < employees.length; i++) {
-            arr[i] = employees[i];
-        }
-        arr[arr.length - 1] = employee;
-        employees = arr;
     }
+
+    @Override
+    public String toString(){
+        if (departmentHead == null) {
+            return departmentName + " без начальника";
+        }
+
+        return "Отдел " + departmentName + " начальник: " + departmentHead.getName();
+    }
+
 }

@@ -5,10 +5,6 @@ public class Department {
     private Employee departmentHead;
     private ArrayList<Employee> employees;
 
-    public Department(){
-        employees = new ArrayList<>();
-    }
-п
     public Department(String departmentName){
         employees = new ArrayList<>();
         this.departmentName = departmentName;

@@ -247,20 +247,22 @@ public class MainTest {
         //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
     }
 
-    public static void task1_6_10(){
+    public static void task1_6_10(){ //должен успешно выполнять: перевод сотрудника, удаление с департмента, установка боссом
         System.out.println("=== 1.6.10 Начальник отдела ===");
         Department it = new Department("IT");
         Department hr = new Department("HR");
         Employee petrov = new Employee("Петров");
         Employee kozlov = new Employee("Козлов");
+
+
         petrov.setDepartment(it);
         kozlov.setDepartment(it);
 
-        it.setDepartmentHead(kozlov);          //Козлов - начальник IT
+        it.setDepartmentHead(kozlov);
         System.out.println(petrov);
         System.out.println(kozlov);
 
-        kozlov.setDepartment(hr);              //начальник переходит в HR - в IT начальника больше нет
+        kozlov.setDepartment(hr);
         System.out.println(petrov);
         System.out.println(kozlov);
         System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
@@ -280,5 +282,25 @@ public class MainTest {
 
         a.removeWay(b);
         System.out.println(a);
+    }
+    public static void task2_1_1(){
+        System.out.println("=== 2.1.1 Запретная Дробь ===");
+        Fraction f = new Fraction(1, 2);
+        System.out.println(f);
+        //class MutableFraction extends Fraction {}   //ошибка компиляции: Fraction - final класс
+    }
+
+    public static void task2_1_2(){
+        System.out.println("=== 2.1.2 Замкнутая ломаная ===");
+        PolygonalLine open = new PolygonalLine(new Point(0, 0), new Point(10, 0), new Point(10, 10), new Point(0, 10));
+        ClosedPolygonalLine closed = new ClosedPolygonalLine(new Point(0, 0), new Point(10, 0), new Point(10, 10), new Point(0, 10));
+        System.out.println(open + " длина: " + open.getLength());
+        System.out.println(closed + " длина: " + closed.getLength());
+    }
+
+    public static void task2_1_5(){
+        System.out.println("=== 2.1.5 Трёхмерная точка точка ===");
+        Point3D p011 = new Point3D(3, 5, 10);
+        System.out.println(p011);
     }
 }

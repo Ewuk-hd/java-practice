@@ -1,4 +1,4 @@
-public class Fraction {
+public final class Fraction {
     private final int numerator;
     private final int denominator;
 

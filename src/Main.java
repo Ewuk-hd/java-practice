@@ -25,7 +25,12 @@ class Main {
             MainTest.task1_6_10();
             MainTest.task1_6_9();
             MainTest.task1_6_3();
-            MainTest.task1_6_1();   //исключение
-            MainTest.task1_6_2();   //исключение
+            //MainTest.task1_6_1();   //исключение
+            //MainTest.task1_6_2();   //исключение
+
+            MainTest.task2_1_1();
+            MainTest.task2_1_2();
+
+            MainTest.task2_1_5();
     }
 }

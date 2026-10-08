@@ -30,6 +30,7 @@ class Main {
 
             MainTest.task2_1_1();
             MainTest.task2_1_2();
+            MainTest.task2_1_3();
 
             MainTest.task2_1_5();
     }

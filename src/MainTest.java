@@ -298,6 +298,24 @@ public class MainTest {
         System.out.println(closed + " длина: " + closed.getLength());
     }
 
+    public static void task2_1_3(){
+        System.out.println("=== 2.1.3 Двусторонняя дорога ===");
+        CityBackWay a = new CityBackWay("A");
+        CityBackWay b = new CityBackWay("B");
+        City c = new City("C");
+
+        a.addWay(b, 5);         //появится и B -> A
+        System.out.println(a);
+        System.out.println(b);
+
+        b.addWay(a, 8);         //стоимость обновится в обе стороны
+        System.out.println(a);
+        System.out.println(b);
+
+        a.addWay(c, 3);         //обратная дорога добавится и обычному городу
+        System.out.println(c);
+    }
+
     public static void task2_1_5(){
         System.out.println("=== 2.1.5 Трёхмерная точка точка ===");
         Point3D p011 = new Point3D(3, 5, 10);

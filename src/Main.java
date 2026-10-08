@@ -31,7 +31,17 @@ class Main {
             MainTest.task2_1_1();
             MainTest.task2_1_2();
             MainTest.task2_1_3();
+            MainTest.task2_1_4();
 
             MainTest.task2_1_5();
+
+            MainTest.task2_2_1();
+            MainTest.task2_2_2();
+            MainTest.task2_2_4();
+            MainTest.task2_2_5();
+
+
+            MainTest.task2_3_3();
+            MainTest.task2_3_6();
     }
 }

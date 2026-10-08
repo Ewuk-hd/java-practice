@@ -1,16 +1,15 @@
-public class Gun {
+public class Gun extends Weapon {
     private final int maxBullets;
-    private int bullets;
 
     public Gun(int maxBullets, int bullets){
+        super(bullets);
         if (maxBullets <= 0){
             throw new IllegalArgumentException("Вместимость должна быть больше нуля: " + maxBullets);
         }
-        if (bullets < 0 || bullets > maxBullets){
+        if (bullets > maxBullets){
             throw new IllegalArgumentException("Патронов должно быть от 0 до " + maxBullets + ": " + bullets);
         }
         this.maxBullets = maxBullets;
-        this.bullets = bullets;
     }
 
     public Gun(int bullets){
@@ -21,10 +20,10 @@ public class Gun {
         this(5);
     }
 
+    @Override
     public void shoot(){
-        if (bullets > 0){
+        if (getAmmo()){
             System.out.println("Бах!");
-            bullets--;
         } else {
             System.out.println("Клац!");
         }
@@ -34,18 +33,18 @@ public class Gun {
         if (count < 0){
             throw new IllegalArgumentException("Отрицательного числа патронов быть не может: " + count);
         }
-        int free = maxBullets - bullets;
+        int free = maxBullets - ammo();
         if (count > free){
-            bullets = maxBullets;
+            load(maxBullets);
             return count - free;
         }
-        bullets += count;
+        load(ammo() + count);
         return 0;
     }
 
     public int unload(){
-        int returned = bullets;
-        bullets = 0;
+        int returned = ammo();
+        load(0);
         return returned;
     }
 
@@ -54,10 +53,10 @@ public class Gun {
     }
 
     public int getBullets(){
-        return bullets;
+        return ammo();
     }
 
     public boolean isLoaded(){
-        return bullets > 0;
+        return ammo() > 0;
     }
 }

@@ -316,9 +316,91 @@ public class MainTest {
         System.out.println(c);
     }
 
+    public static void task2_1_4(){
+        System.out.println("=== 2.1.4 Автомат ===");
+        AutoGun ak = new AutoGun(4, 2);                  //вместимость 4, скорострельность 2, заряжен
+        ak.shoot();                                      //Бах! Бах!
+        System.out.println("--");
+        ak.shoot(2);                                     //2 секунды по 2: Бах! Бах! Клац! Клац!
+
+        AutoGun def = new AutoGun();
+        System.out.println("Без параметров: вместимость " + def.getMaxBullets() + ", скорострельность " + def.getFireRate());
+        AutoGun half = new AutoGun(10);
+        System.out.println("Вместимость 10: скорострельность " + half.getFireRate());
+        //new AutoGun(10, 0);                            //выбросит IllegalArgumentException
+    }
+
     public static void task2_1_5(){
         System.out.println("=== 2.1.5 Трёхмерная точка точка ===");
         Point3D p011 = new Point3D(3, 5, 10);
         System.out.println(p011);
+    }
+
+    public static void task2_2_1(){
+        System.out.println("=== 2.2.1 Оружие ===");
+        Weapon w = new Gun(7, 3);                   //пистолет теперь - оружие
+        w.shoot();                                  //Бах!
+        System.out.println("Патронов: " + w.ammo());
+        System.out.println("Было до перезарядки: " + w.load(7));
+        System.out.println("Патронов: " + w.ammo());
+    }
+
+    public static void task2_2_2(){
+        System.out.println("=== Дробь - это число ===");
+        Fraction f = new Fraction(7, 2);
+        Number n = f;
+
+        System.out.println(f + " -> int: " + n.intValue());
+        System.out.println(f + " -> long: " + n.longValue());
+        System.out.println(f + " -> float: " + n.floatValue());
+        System.out.println(f + " -> double: " + n.doubleValue());
+    }
+
+    public static void task2_2_4(){
+        System.out.println("=== 2.2.4 Фигуры ===");
+        Shape[] shapes = {
+                new Circle(2),
+                new Rectangle(3, 4),
+                new SquareShape(5),
+                new Triangle(3, 4, 5)
+        };
+        for (int i = 0; i < shapes.length; i++){
+            System.out.println(shapes[i] + ", площадь: " + shapes[i].getArea());
+        }
+    }
+
+    public static void task2_2_5(){
+        System.out.println("=== 2.2.5 Точки ===");
+        FeaturePoint p1 = new FeaturePoint(3);
+        p1.addProperty(new ColorProperty("красный"));
+
+        FeaturePoint p2 = new FeaturePoint(4, 2, 5);
+        p2.addProperty(new SizeProperty(20));
+
+        FeaturePoint p3 = new FeaturePoint(7, 7);
+        p3.addProperty(new ColorProperty("жёлтый"));
+        p3.addProperty(new BorderProperty("красный", "котёнка"));
+
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(p3);
+    }
+
+    public static void task2_3_6(){
+        System.out.println("=== 2.3.6 Замкнутый квадрат ===");
+        Square sq = new Square(0, 0, 10);
+        PolygonalLine pl = sq.getPL();          //ссылка типа PolygonalLine
+        System.out.println(pl);
+        System.out.println(pl.getLength());     //40.0 - все 4 стороны, т.к. объект на самом деле замкнутый
+    }
+
+    public static void task2_3_3(){
+        System.out.println("=== 2.3.3 Общая площадь ===");
+        double total = Shape.totalArea(
+                new Circle(1),
+                new Circle(2),
+                new SquareShape(3),
+                new SquareShape(4));
+        System.out.println("Общая площадь: " + total);
     }
 }

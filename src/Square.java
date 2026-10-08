@@ -36,7 +36,7 @@ public class Square {
     public PolygonalLine getPL(){
         int x = topLeftP.getX();
         int y = topLeftP.getY();
-        return new PolygonalLine(
+        return new ClosedPolygonalLine(
                 new Point(x, y),
                 new Point(x + side, y),
                 new Point(x + side, y - side),

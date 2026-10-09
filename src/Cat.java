@@ -1,4 +1,4 @@
-public class Cat {
+public class Cat implements Meowable {
     String name;
 
     public Cat(String name){

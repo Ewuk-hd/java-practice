@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MainTest {
     public static void task1_4_1(){
         //Уже выполнено в 1.1.1
@@ -5,7 +7,7 @@ public class MainTest {
         Point p008 = new Point(3, 5);
         Point p009 = new Point(25, 6);
         Point p010 = new Point(7, 8);
-        System.out.println(p008 + "\n" + p009 + "\n" + p009);
+        System.out.println(p008 + "\n" + p009 + "\n" + p010);
     }
 
     public static void task1_4_2(){
@@ -146,8 +148,8 @@ public class MainTest {
         //1. Создать квадрат
         Square sq = new Square(new Point(5, 3), 23);
         System.out.println(sq);
-        //2. Присвоить в ссылку типа Ломаная результат sq.getPL();
-        PolygonalLine sqPL = sq.getPL();
+        //2. Присвоить в ссылку типа Ломаная результат sq.getPolyline();
+        PolygonalLine sqPL = sq.getPolyline();
         System.out.println(sqPL);
         //3. Вывести длину ломаной
         System.out.println(sqPL.getLength());
@@ -447,9 +449,9 @@ public class MainTest {
     public static void task2_3_6(){
         System.out.println("=== 2.3.6 Замкнутый квадрат ===");
         Square sq = new Square(0, 0, 10);
-        PolygonalLine pl = sq.getPL();          //ссылка типа PolygonalLine
+        PolygonalLine pl = sq.getPolyline();
         System.out.println(pl);
-        System.out.println(pl.getLength());     //40.0 - все 4 стороны, т.к. объект на самом деле замкнутый
+        System.out.println(pl.getLength());
     }
 
     public static void task2_3_8(){
@@ -466,5 +468,22 @@ public class MainTest {
         garry.shoot();
         System.out.println(mike.getName() + " стреляет:");
         mike.shoot();
+    }
+
+    //Метод для 2.3.7
+    public static PolygonalLine joinPolylines(Polylinable... items){
+        PolygonalLine result = new PolygonalLine();
+        for (int i = 0; i < items.length; i++){
+            ArrayList<Point> points = items[i].getPolyline().getPoints();   //точки очередной ломаной
+            for (int j = 0; j < points.size(); j++){
+                result.addPoints(points.get(j));                           //дописываем в общую
+            }
+        }
+        return result;
+    }
+    public static void task2_3_7(){
+        System.out.println("=== 2.3.7 Поломки ===");
+        PolygonalLine joined = joinPolylines(new Square(0, 0, 2), new Square(10, 10, 3));
+        System.out.println(joined);
     }
 }

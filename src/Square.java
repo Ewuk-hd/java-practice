@@ -1,4 +1,4 @@
-public class Square {
+public class Square implements Polylinable {
     private Point topLeftP;
     private int side;
 
@@ -33,7 +33,7 @@ public class Square {
         this.side = side;
     }
 
-    public PolygonalLine getPL(){
+    public PolygonalLine getPolyline(){
         int x = topLeftP.getX();
         int y = topLeftP.getY();
         return new ClosedPolygonalLine(

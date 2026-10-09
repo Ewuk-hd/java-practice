@@ -46,6 +46,7 @@ class Main {
             MainTest.task2_3_4();
             MainTest.task2_3_5();
             MainTest.task2_3_6();
+            MainTest.task2_3_7();
             MainTest.task2_3_8();
     }
 }

@@ -1,2 +1,3 @@
-public class Measurable {
+public interface Measurable {
+    double getLength();
 }

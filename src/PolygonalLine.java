@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PolygonalLine {
+public class PolygonalLine implements Measurable {
     private ArrayList<Point> points;
 
     public PolygonalLine(){
@@ -43,7 +43,7 @@ public class PolygonalLine {
     public double getLength(){
         double length = 0;
         for (int i = 0; i < points.size() - 1; i++){
-            length += new Line(points.get(i), points.get(i + 1)).length1();
+            length += new Line(points.get(i), points.get(i + 1)).getLength();
         }
         return length;
     }

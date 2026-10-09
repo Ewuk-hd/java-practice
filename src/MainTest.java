@@ -93,7 +93,7 @@ public class MainTest {
     public static void task1_5_3(){
         System.out.println("=== 1.5.3 Длина Линии ===");
         Line line = new Line(1, 1, 10, 15);
-        System.out.println((int) line.length1());
+        System.out.println((int) line.getLength());
     }
 
     public static void task1_5_4(){
@@ -105,6 +105,7 @@ public class MainTest {
         System.out.println(petr);
         System.out.println(boris);
     }
+
     public static void task1_5_5(){
         System.out.println("=== 1.5.5 Дроби ===");
         Fraction f1 = new Fraction(1, 3);
@@ -247,6 +248,22 @@ public class MainTest {
         //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
     }
 
+    public static void task1_6_9(){
+        System.out.println("=== 1.6.9 Дороги ===");
+        City b = new City("B");
+        City c = new City("C");
+        City d = new City("D");
+        City a = new City("A", new Way(b, 5), new Way(c, 3), new Way(b, 7));
+        System.out.println(a);
+
+        a.addWay(c, 10);
+        a.addWay(d, 4);
+        System.out.println(a);
+
+        a.removeWay(b);
+        System.out.println(a);
+    }
+
     public static void task1_6_10(){ //должен успешно выполнять: перевод сотрудника, удаление с департмента, установка боссом
         System.out.println("=== 1.6.10 Начальник отдела ===");
         Department it = new Department("IT");
@@ -268,21 +285,6 @@ public class MainTest {
         System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
     }
 
-    public static void task1_6_9(){
-        System.out.println("=== 1.6.9 Дороги ===");
-        City b = new City("B");
-        City c = new City("C");
-        City d = new City("D");
-        City a = new City("A", new Way(b, 5), new Way(c, 3), new Way(b, 7));
-        System.out.println(a);
-
-        a.addWay(c, 10);
-        a.addWay(d, 4);
-        System.out.println(a);
-
-        a.removeWay(b);
-        System.out.println(a);
-    }
     public static void task2_1_1(){
         System.out.println("=== 2.1.1 Запретная Дробь ===");
         Fraction f = new Fraction(1, 2);
@@ -385,14 +387,22 @@ public class MainTest {
         System.out.println(p2);
         System.out.println(p3);
     }
-
-    public static void task2_3_6(){
-        System.out.println("=== 2.3.6 Замкнутый квадрат ===");
-        Square sq = new Square(0, 0, 10);
-        PolygonalLine pl = sq.getPL();          //ссылка типа PolygonalLine
-        System.out.println(pl);
-        System.out.println(pl.getLength());     //40.0 - все 4 стороны, т.к. объект на самом деле замкнутый
+    // Метод для 2.3.1
+    public static double sum(Number... numbers){
+        double result = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            result += numbers[i].doubleValue();
+        }
+        return result;
     }
+
+    public static  void task2_3_1(){
+        System.out.println("=== 2.3.1 Результат сложения в вещественном ===");
+        System.out.println(sum(2, new Fraction(3, 5), 2.3));
+        System.out.println(sum(3.6, new Fraction(49, 12), 3, new Fraction(3, 2)));
+        System.out.println(sum(new Fraction(1, 3), 1));
+    }
+
 
     public static void task2_3_3(){
         System.out.println("=== 2.3.3 Общая площадь ===");
@@ -404,30 +414,42 @@ public class MainTest {
         System.out.println("Общая площадь: " + total);
     }
 
-    // Метод для 2.3.1
-    public static double sum(Number... numbers){
-        double result = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            result += numbers[i].doubleValue();
-        }
-        return result;
-    }
-    public static  void task2_3_1(){
-        System.out.println("=== 2.3.1 Результат сложения в вещественном ===");
-        System.out.println(sum(2, new Fraction(3, 5), 2.3));
-        System.out.println(sum(3.6, new Fraction(49, 12), 3, new Fraction(3, 2)));
-        System.out.println(sum(new Fraction(1, 3), 1));
-    }
-
     //Метод для 2.3.4
     public static void meowAll(Meowable... meowers){
         for (int i = 0; i < meowers.length; i++) {
             meowers[i].meow();
         }
     }
+
     public static void task2_3_4(){
         System.out.println("=== 2.3.4 Мяуканье ===");
         meowAll(new Cat("Дымок"), new Cat("Соня"), new Panther());
+    }
+
+    public static double totalLength(Measurable... items){
+        double sum = 0;
+        for (int i = 0; i < items.length; i++) {
+            System.out.println(items[i].getLength());
+        }
+        return sum;
+    }
+
+    //Метод для 2.3.5
+    public static void task2_3_5(){
+        System.out.println("=== 2.3.5 Измерение длины ===");
+
+        Line line = new Line(0, 0, 3,4);
+        PolygonalLine pl = new PolygonalLine(new Point(4, 4), new Point(8, 8));
+        ClosedPolygonalLine cpl = new ClosedPolygonalLine(new Point(10, 10), new Point(20, 20), new Point(30, 30));
+        System.out.println("Итоговая длина:" + totalLength(line, pl, cpl));
+    }
+
+    public static void task2_3_6(){
+        System.out.println("=== 2.3.6 Замкнутый квадрат ===");
+        Square sq = new Square(0, 0, 10);
+        PolygonalLine pl = sq.getPL();          //ссылка типа PolygonalLine
+        System.out.println(pl);
+        System.out.println(pl.getLength());     //40.0 - все 4 стороны, т.к. объект на самом деле замкнутый
     }
 
     public static void task2_3_8(){
@@ -445,9 +467,4 @@ public class MainTest {
         System.out.println(mike.getName() + " стреляет:");
         mike.shoot();
     }
-
-    public static void task2_3_5(){
-
-    }
-
 }

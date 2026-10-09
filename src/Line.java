@@ -1,4 +1,4 @@
-public class Line {
+public class Line implements Measurable{
     private static final Point DEFAULT_POINT = new Point(0,0);
     private Point start;
     private Point end;
@@ -48,7 +48,8 @@ public class Line {
         this.start = new Point(x, y);
     }
 
-    public double length1(){
+    @Override
+    public double getLength(){
         int kat1 = getEnd().getX()-getStart().getX();
         int kat2 = getEnd().getY()-getStart().getY();
         double len = Math.sqrt(kat1*kat1 + kat2*kat2);

@@ -246,8 +246,8 @@ public class MainTest {
         vasya.addMark(2);
         System.out.println(vasya);
         System.out.println(vasya.getMarks());
-        //vasya.addMark(7);                  //выбросит IllegalArgumentException
-        //new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
+        vasya.addMark(7);                  //выбросит IllegalArgumentException
+        new Student("Петя", 1, 5);         //выбросит IllegalArgumentException
     }
 
     public static void task1_6_9(){
@@ -266,7 +266,8 @@ public class MainTest {
         System.out.println(a);
     }
 
-    public static void task1_6_10(){ //должен успешно выполнять: перевод сотрудника, удаление с департмента, установка боссом
+    //должен успешно выполнять: перевод сотрудника, удаление с департмента, установка боссом
+    public static void task1_6_10(){
         System.out.println("=== 1.6.10 Начальник отдела ===");
         Department it = new Department("IT");
         Department hr = new Department("HR");
@@ -291,7 +292,6 @@ public class MainTest {
         System.out.println("=== 2.1.1 Запретная Дробь ===");
         Fraction f = new Fraction(1, 2);
         System.out.println(f);
-        //class MutableFraction extends Fraction {}   //ошибка компиляции: Fraction - final класс
     }
 
     public static void task2_1_2(){
@@ -308,24 +308,24 @@ public class MainTest {
         CityBackWay b = new CityBackWay("B");
         City c = new City("C");
 
-        a.addWay(b, 5);         //появится и B -> A
+        a.addWay(b, 5);
         System.out.println(a);
         System.out.println(b);
 
-        b.addWay(a, 8);         //стоимость обновится в обе стороны
+        b.addWay(a, 8);
         System.out.println(a);
         System.out.println(b);
 
-        a.addWay(c, 3);         //обратная дорога добавится и обычному городу
+        a.addWay(c, 3);
         System.out.println(c);
     }
 
     public static void task2_1_4(){
         System.out.println("=== 2.1.4 Автомат ===");
-        AutoGun ak = new AutoGun(4, 2);                  //вместимость 4, скорострельность 2, заряжен
-        ak.shoot();                                      //Бах! Бах!
+        AutoGun ak = new AutoGun(4, 2);
+        ak.shoot();
         System.out.println("--");
-        ak.shoot(2);                                     //2 секунды по 2: Бах! Бах! Клац! Клац!
+        ak.shoot(2);
 
         AutoGun def = new AutoGun();
         System.out.println("Без параметров: вместимость " + def.getMaxBullets() + ", скорострельность " + def.getFireRate());
@@ -512,5 +512,17 @@ public class MainTest {
         System.out.println("=== 2.3.7 Поломки ===");
         PolygonalLine joined = joinPolylines(new Square(0, 0, 2), new Square(10, 10, 3));
         System.out.println(joined);
+    }
+
+    public static void task2_3_9(){
+        System.out.println("=== 2.3.9 Правильные оценки ===");
+        Student vasya = new Student("Вася", new BinaryMarkRule(), 1, 0, 1);
+        Student petya = new Student("Петя", new EvenMarkRule(), 2, 4, 10, 100);
+        Student free = new Student("Без правила", 7, -3, 100);
+        System.out.println(vasya);
+        System.out.println(petya);
+        System.out.println(free);
+        //vasya.addMark(5);                 //Exception: не 0 и не 1
+        //petya.addMark(3);                 //Exception: нечётное
     }
 }

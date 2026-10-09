@@ -3,9 +3,15 @@ import java.util.ArrayList;
 public class Student {
     private String name;
     private ArrayList<Integer> marks;
+    private final MarkRule rule;
 
     public Student(String name, int... marks){
+        this(name, null, marks);
+    }
+
+    public Student(String name, MarkRule rule, int... marks){
         this.name = name;
+        this.rule = rule;
         this.marks = toList(marks);
     }
 
@@ -30,7 +36,7 @@ public class Student {
         marks.add(mark);
     }
 
-    private static ArrayList<Integer> toList(int... marks){
+    private ArrayList<Integer> toList(int... marks){
         ArrayList<Integer> result = new ArrayList<>();
         if (marks != null){
             for (int i = 0; i < marks.length; i++){
@@ -41,9 +47,9 @@ public class Student {
         return result;
     }
 
-    private static void checkMark(int mark){
-        if (mark < 2 || mark > 5){
-            throw new IllegalArgumentException("Оценка должна быть от 2 до 5: " + mark);
+    private void checkMark(int mark){
+        if (rule != null && !rule.isValid(mark)){
+            throw new IllegalArgumentException("Оценка не подходит под правило: " + mark);
         }
     }
 

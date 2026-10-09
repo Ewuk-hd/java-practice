@@ -37,11 +37,13 @@ class Main {
 
             MainTest.task2_2_1();
             MainTest.task2_2_2();
+            MainTest.task2_2_3();
             MainTest.task2_2_4();
             MainTest.task2_2_5();
 
 
             MainTest.task2_3_1();
+            MainTest.task2_3_2();
             MainTest.task2_3_3();
             MainTest.task2_3_4();
             MainTest.task2_3_5();

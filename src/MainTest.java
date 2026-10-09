@@ -360,6 +360,14 @@ public class MainTest {
         System.out.println(f + " -> double: " + n.doubleValue());
     }
 
+    public static void task2_2_3(){
+        System.out.println("=== 2.2.3 Птицы ===");
+        Bird[] birds = { new Sparrow(), new Cuckoo(), new Parrot("Попка дурак") };
+        for (int i = 0; i < birds.length; i++){
+            birds[i].sing();
+        }
+    }
+
     public static void task2_2_4(){
         System.out.println("=== 2.2.4 Фигуры ===");
         Shape[] shapes = {
@@ -398,11 +406,30 @@ public class MainTest {
         return result;
     }
 
-    public static  void task2_3_1(){
+    public static void task2_3_1(){
         System.out.println("=== 2.3.1 Результат сложения в вещественном ===");
         System.out.println(sum(2, new Fraction(3, 5), 2.3));
         System.out.println(sum(3.6, new Fraction(49, 12), 3, new Fraction(3, 2)));
         System.out.println(sum(new Fraction(1, 3), 1));
+    }
+
+
+    //Метод для 2.3.2
+    public static void birdMarket(Bird... birds){
+        for (int i = 0; i < birds.length; i++) {
+            birds[i].sing();
+        }
+    }
+
+    public static void task2_3_2(){
+        System.out.println("=== 2.3.2 Птичий рынок ===");
+        Sparrow sparrow = new Sparrow();
+        Sparrow sparrow1 = new Sparrow();
+        Cuckoo cuckoo = new Cuckoo();
+        Cuckoo cuckoo1 = new Cuckoo();
+        Parrot parrot = new Parrot("Попка хороший попугай");
+        Parrot parrot1 = new Parrot("Сегодня хороший день");
+        birdMarket(sparrow, cuckoo, parrot, sparrow1, cuckoo1, parrot1);
     }
 
 

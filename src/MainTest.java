@@ -275,16 +275,18 @@ public class MainTest {
         Employee kozlov = new Employee("Козлов");
 
 
-        petrov.setDepartment(it);
-        kozlov.setDepartment(it);
+        petrov.setDep(it);
+        kozlov.setDep(it);
 
-        it.setDepartmentHead(kozlov);
+        it.setChief(kozlov);
         System.out.println(petrov);
         System.out.println(kozlov);
+        System.out.println("Начальник IT: " + it.getChief().getName());
 
-        kozlov.setDepartment(hr);
+        kozlov.setDep(hr);
         System.out.println(petrov);
         System.out.println(kozlov);
+        System.out.println("Начальник IT: " + it.getChief());
         System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
     }
 

@@ -1,58 +1,43 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Department {
-    private String departmentName;
-    private Employee departmentHead;
-    private ArrayList<Employee> employees;
+class Department {
+    private String title;
+    private Employee chief;
+    private final List<Employee> employees;
 
-    public Department(String departmentName){
-        employees = new ArrayList<>();
-        this.departmentName = departmentName;
-        this.departmentHead = null;
+    public Department(String title) {
+        this.title = title;
+        this.employees = new ArrayList<>();
     }
 
-    public Department(String departmentName, Employee departmentHead){
-        employees = new ArrayList<>();
-        this.departmentName = departmentName;
-        this.departmentHead = departmentHead;
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public Employee getChief() { return chief; }
+
+    public void setChief(Employee chief) {
+        if (this.chief == chief) return;
+        this.chief = chief;
+        this.addEmployee(chief);
     }
 
-    public String getDepartmentName(){
-        return departmentName;
-    }
-
-    public Employee getDepartmentHead(){
-        return departmentHead;
-    }
-
-    public ArrayList<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
         return new ArrayList<>(employees);
     }
 
-    public void setDepartmentHead(Employee name){
-        this.departmentHead = name;
+    public void addEmployee(Employee e) {
+        if (e == null) return;
+        if (employees.contains(e)) return;
+        employees.add(e);
+        e.setDep(this);
     }
 
-
-    public void removeEmployee(Employee employee){
-        employees.remove(employee);
+    public void removeEmployee(Employee e) {
+        if (e == null || !this.employees.contains(e)) return;
+        if (e.getDep().getChief() == e) e.getDep().setChief(null);
+        employees.remove(e);
+        e.setDep(null);
     }
-
-    public void addEmployee(Employee employee) {
-        if (employee == null || employees.contains(employee)) return;
-        employees.add(employee);
-        if (employee.getDepartment() != this) {
-            employee.setDepartment(this);
-        }
-    }
-
-    @Override
-    public String toString(){
-        if (departmentHead == null) {
-            return departmentName + " без начальника";
-        }
-
-        return "Отдел " + departmentName + " начальник: " + departmentHead.getName();
-    }
-
 }

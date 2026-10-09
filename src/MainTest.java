@@ -430,4 +430,24 @@ public class MainTest {
         meowAll(new Cat("Дымок"), new Cat("Соня"), new Panther());
     }
 
+    public static void task2_3_8(){
+        System.out.println("=== 2.3.8 Лучший стрелок ===");
+
+        Shooter bob = new Shooter("Боб");
+        Shooter garry = new Shooter("Гэрри");
+        Shooter mike = new Shooter("Майк");
+
+        garry.setWeapon(new Gun(7, 3));
+        mike.setWeapon(new AutoGun(12, 3));
+
+        System.out.println(garry.getName() + " стреляет:");
+        garry.shoot();
+        System.out.println(mike.getName() + " стреляет:");
+        mike.shoot();
+    }
+
+    public static void task2_3_5(){
+
+    }
+
 }

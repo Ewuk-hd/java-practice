@@ -17,6 +17,7 @@ import ru.komarov.geometry.*;
 import ru.komarov.geometry.properties.*;
 
 import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class MainTest {
 
@@ -258,5 +259,19 @@ public class MainTest {
         System.out.println(free);
         //vasya.addMark(5);                 //Exception: не 0 и не 1
         //petya.addMark(3);                 //Exception: нечётное
+    }
+
+    public static void task3_1_3(){
+        System.out.println("=== 3.1.3 Сложение из пакетов ===");
+        BigInteger big = new BigInteger("12345678912345678912");
+        System.out.println(sum(7, new Fraction(11, 3), 3.21, big));
+    }
+
+    public static void task3_1_5(){
+        System.out.println("=== 3.1.5 Простые имена ===");
+        Point p001 = new Point(13, 2);
+        java.awt.Point p002 = new java.awt.Point(26, 6);
+        System.out.println(p001);
+        System.out.println(p002);
     }
 }

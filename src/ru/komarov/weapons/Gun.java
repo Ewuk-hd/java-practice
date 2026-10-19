@@ -35,18 +35,18 @@ public class Gun extends Weapon {
         if (count < 0){
             throw new IllegalArgumentException("Отрицательного числа патронов быть не может: " + count);
         }
-        int free = maxBullets - ammo();
+        int free = maxBullets - ammo;
         if (count > free){
-            load(maxBullets);
+            ammo = maxBullets;
             return count - free;
         }
-        load(ammo() + count);
+        ammo += count;
         return 0;
     }
 
     public int unload(){
-        int returned = ammo();
-        load(0);
+        int returned = ammo;
+        ammo = 0;
         return returned;
     }
 
@@ -55,10 +55,10 @@ public class Gun extends Weapon {
     }
 
     public int getBullets(){
-        return ammo();
+        return ammo;
     }
 
     public boolean isLoaded(){
-        return ammo() > 0;
+        return ammo > 0;
     }
 }

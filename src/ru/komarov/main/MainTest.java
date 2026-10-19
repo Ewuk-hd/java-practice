@@ -304,4 +304,14 @@ public class MainTest {
         System.out.println(kozlov + ", начальник HR: " + hr.getChief());
         System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
     }
+
+    public static void task3_2_2(){
+        System.out.println("=== 3.2.2 Патроны наследникам ===");
+        Gun gun = new Gun(7, 5);
+        gun.shoot();
+        System.out.println("Разряжено: " + gun.unload());     //4 - unload работает с полем ammo напрямую
+        System.out.println("Осталось: " + gun.getBullets());  //0
+        gun.shoot();
+        //gun.ammo = 100;   //ошибка: ammo - protected, MainTest не наследник Weapon и в другом пакете
+    }
 }

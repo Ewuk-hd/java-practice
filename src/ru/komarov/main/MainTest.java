@@ -16,6 +16,7 @@ import ru.komarov.weapons.Weapon;
 import ru.komarov.geometry.*;
 import ru.komarov.geometry.properties.*;
 
+import ru.komarov.work.*;
 import java.util.ArrayList;
 import java.math.BigInteger;
 
@@ -290,4 +291,17 @@ public class MainTest {
         System.out.println(p002);
     }
 
+    public static void task3_2_1(){
+        System.out.println("=== 3.2.1 Отделы доверяют начальникам ===");
+        Department it = new Department("IT");
+        Department hr = new Department("HR");
+        Employee petrov = new Employee("Петров");
+        Employee kozlov = new Employee("Козлов");
+        it.addEmployee(petrov);
+        hr.setChief(kozlov);                //Козлов переводится в HR и становится начальником
+        System.out.println(kozlov + ", начальник HR: " + hr.getChief().getName());
+        kozlov.setDep(it);                  //уходит в IT - в HR начальника больше нет
+        System.out.println(kozlov + ", начальник HR: " + hr.getChief());
+        System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
+    }
 }

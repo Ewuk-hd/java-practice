@@ -15,11 +15,12 @@ public class Employee {
     public void setDep(Department dep) {
         if (this.dep == dep) return;
         if (this.dep != null) {
-            this.dep.removeEmployee(this);
+            if (this.dep.chief == this) this.dep.chief = null;
+            this.dep.employees.remove(this);
         }
         this.dep = dep;
         if (dep == null) return;
-        this.dep.addEmployee(this);
+        this.dep.employees.add(this);
     }
 
     @Override

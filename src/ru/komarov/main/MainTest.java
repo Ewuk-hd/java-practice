@@ -278,9 +278,9 @@ public class MainTest {
         return pw;
     }
 
-    public static void task3_1_4(){
+    public static void task3_1_4(String[] args){
         System.out.println("=== 3.1.4 Возведение в степень ===");
-        System.out.println(power("2","9"));
+        System.out.println(power(args[0], args[1]));
     }
 
     public static void task3_1_5(){

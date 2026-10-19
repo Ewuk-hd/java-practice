@@ -19,6 +19,10 @@ import ru.komarov.geometry.properties.*;
 import java.util.ArrayList;
 import java.math.BigInteger;
 
+//3.1.4
+import static java.lang.Math.pow;
+import static java.lang.Integer.parseInt;
+
 public class MainTest {
 
     public static void task2_1_1(){
@@ -267,6 +271,17 @@ public class MainTest {
         System.out.println(sum(7, new Fraction(11, 3), 3.21, big));
     }
 
+    //Метод для 3.1.4
+    public static double power(String x, String y){
+        double pw = pow(parseInt(x), parseInt(y));
+        return pw;
+    }
+
+    public static void task3_1_4(){
+        System.out.println("=== 3.1.4 Возведение в степень ===");
+        System.out.println(power("2","9"));
+    }
+
     public static void task3_1_5(){
         System.out.println("=== 3.1.5 Простые имена ===");
         Point p001 = new Point(13, 2);
@@ -274,4 +289,5 @@ public class MainTest {
         System.out.println(p001);
         System.out.println(p002);
     }
+
 }

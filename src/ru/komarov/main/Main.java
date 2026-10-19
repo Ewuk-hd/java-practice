@@ -32,8 +32,10 @@ class Main {
 //            ru.komarov.main.MainTest.task2_3_7();
 //            ru.komarov.main.MainTest.task2_3_8();
 //            ru.komarov.main.MainTest.task2_3_9();
-            ru.komarov.main.MainTest.task3_1_3();
+            MainTest.task3_1_3();
+            MainTest.task3_1_4();
             MainTest.task3_1_5();
+
 
 
         System.out.println(sum(3, 4));

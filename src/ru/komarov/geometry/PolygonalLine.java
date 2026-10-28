@@ -49,6 +49,22 @@ public class PolygonalLine implements Measurable {
         return length;
     }
 
+
+    @Override
+    public PolygonalLine clone() {
+        try {
+            PolygonalLine copy = (PolygonalLine) super.clone();
+            copy.points = new ArrayList<>();
+            for (int i = 0; i < points.size(); i++) {
+                copy.points.add(points.get(i).clone());
+            }
+            return copy;
+
+        }catch (CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public String toString() {
         return "Линия " + points;

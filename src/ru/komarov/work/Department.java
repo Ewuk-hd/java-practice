@@ -2,6 +2,7 @@ package ru.komarov.work;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Department {
     private String title;
@@ -34,5 +35,18 @@ public class Department {
 
     public void removeEmployee(Employee e) {
         if (e != null && e.getDep() == this) e.setDep(null);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Department d = (Department) o;
+        return Objects.equals(title, d.title);
+    }
+
+    @Override
+    public int hashCode(){
+        return  Objects.hashCode(title);
     }
 }

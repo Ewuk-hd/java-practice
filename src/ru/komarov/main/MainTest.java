@@ -1,8 +1,6 @@
 package ru.komarov.main;
 
 import ru.komarov.animals.*;
-import ru.komarov.geometry.properties.ColorProperty;
-import ru.komarov.geometry.properties.FeaturePoint;
 import ru.komarov.map.City;
 import ru.komarov.map.CityBackWay;
 import ru.komarov.math.Fraction;
@@ -135,7 +133,8 @@ public class MainTest {
         System.out.println(p2);
         System.out.println(p3);
     }
-    // Метод для 2.3.1
+
+    //Метод для 2.3.1
     public static double sum(Number... numbers){
         double result = 0;
         for (int i = 0; i < numbers.length; i++) {
@@ -150,7 +149,6 @@ public class MainTest {
         System.out.println(sum(3.6, new Fraction(49, 12), 3, new Fraction(3, 2)));
         System.out.println(sum(new Fraction(1, 3), 1));
     }
-
 
     //Метод для 2.3.2
     public static void birdMarket(Bird... birds){
@@ -169,7 +167,6 @@ public class MainTest {
         Parrot parrot1 = new Parrot("Сегодня хороший день");
         birdMarket(sparrow, cuckoo, parrot, sparrow1, cuckoo1, parrot1);
     }
-
 
     public static void task2_3_3(){
         System.out.println("=== 2.3.3 Общая площадь ===");
@@ -193,6 +190,7 @@ public class MainTest {
         meowAll(new Cat("Дымок"), new Cat("Соня"), new Panther());
     }
 
+    //Метод для 2.3.5
     public static double totalLength(Measurable... items){
         double sum = 0;
         for (int i = 0; i < items.length; i++) {
@@ -201,7 +199,6 @@ public class MainTest {
         return sum;
     }
 
-    //Метод для 2.3.5
     public static void task2_3_5(){
         System.out.println("=== 2.3.5 Измерение длины ===");
 
@@ -217,6 +214,24 @@ public class MainTest {
         PolygonalLine pl = sq.getPolyline();
         System.out.println(pl);
         System.out.println(pl.getLength());
+    }
+
+    //Метод для 2.3.7
+    public static PolygonalLine joinPolylines(Polylinable... items){
+        PolygonalLine result = new PolygonalLine();
+        for (int i = 0; i < items.length; i++){
+            ArrayList<Point> points = items[i].getPolyline().getPoints();
+            for (int j = 0; j < points.size(); j++){
+                result.addPoints(points.get(j));
+            }
+        }
+        return result;
+    }
+
+    public static void task2_3_7(){
+        System.out.println("=== 2.3.7 Поломки ===");
+        PolygonalLine joined = joinPolylines(new Square(0, 0, 2), new Square(10, 10, 3));
+        System.out.println(joined);
     }
 
     public static void task2_3_8(){
@@ -237,23 +252,6 @@ public class MainTest {
         bob.shoot();
     }
 
-    //Метод для 2.3.7
-    public static PolygonalLine joinPolylines(Polylinable... items){
-        PolygonalLine result = new PolygonalLine();
-        for (int i = 0; i < items.length; i++){
-            ArrayList<Point> points = items[i].getPolyline().getPoints();
-            for (int j = 0; j < points.size(); j++){
-                result.addPoints(points.get(j));
-            }
-        }
-        return result;
-    }
-    public static void task2_3_7(){
-        System.out.println("=== 2.3.7 Поломки ===");
-        PolygonalLine joined = joinPolylines(new Square(0, 0, 2), new Square(10, 10, 3));
-        System.out.println(joined);
-    }
-
     public static void task2_3_9(){
         System.out.println("=== 2.3.9 Правильные оценки ===");
         Student vasya = new Student("Вася", new BinaryMarkRule(), 1, 0, 1);
@@ -262,8 +260,6 @@ public class MainTest {
         System.out.println(vasya);
         System.out.println(petya);
         System.out.println(free);
-        //vasya.addMark(5);                 //Exception: не 0 и не 1
-        //petya.addMark(3);                 //Exception: нечётное
     }
 
     public static void task3_1_3(){
@@ -298,9 +294,9 @@ public class MainTest {
         Employee petrov = new Employee("Петров");
         Employee kozlov = new Employee("Козлов");
         it.addEmployee(petrov);
-        hr.setChief(kozlov);                //Козлов переводится в HR и становится начальником
+        hr.setChief(kozlov);
         System.out.println(kozlov + ", начальник HR: " + hr.getChief().getName());
-        kozlov.setDep(it);                  //уходит в IT - в HR начальника больше нет
+        kozlov.setDep(it);
         System.out.println(kozlov + ", начальник HR: " + hr.getChief());
         System.out.println("IT: " + it.getEmployees().size() + ", HR: " + hr.getEmployees().size());
     }
@@ -309,9 +305,8 @@ public class MainTest {
         System.out.println("=== 3.2.2 Патроны наследникам ===");
         Gun gun = new Gun(7, 5);
         gun.shoot();
-        System.out.println("Разряжено: " + gun.unload());     //4 - unload работает с полем ammo напрямую
-        System.out.println("Осталось: " + gun.getBullets());  //0
+        System.out.println("Разряжено: " + gun.unload());
+        System.out.println("Осталось: " + gun.getBullets());
         gun.shoot();
-        //gun.ammo = 100;   //ошибка: ammo - protected, MainTest не наследник Weapon и в другом пакете
     }
 }

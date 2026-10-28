@@ -1,6 +1,6 @@
 package ru.komarov.geometry;
 
-public sealed class Point permits Point3D {
+public sealed class Point implements Cloneable permits Point3D {
     protected int[] coords;
 
     public Point(int x, int y) {
@@ -38,6 +38,20 @@ public sealed class Point permits Point3D {
             copy[i] = coords[i];
         }
         return copy;
+    }
+
+    @Override
+    public Point clone() {
+        try {
+            Point copy = (Point) super.clone();
+            copy.coords = new int[coords.length];
+            for (int i = 0; i < coords.length; i++) {
+                copy.coords[i] = coords[i];
+            }
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
     }
 
     @Override

@@ -305,4 +305,22 @@ public class MainTest {
         System.out.println(stack + ", сверху: " + stack.peek());
         System.out.println("pop: " + stack.pop() + ", осталось: " + stack);
     }
+
+    //Метод для 6.2.1
+    public static void shiftStart(Line<? extends Point> line){
+        Point start = line.getStart();                      // getter работает: вернёт как минимум Point
+        int x = start.getX();
+        int newX = x >= 0 ? x + 10 : x - 10;                 // 5 → 15, -7 → -17
+        line.setStart(newX, start.getY());                   // setStart(int, int) — не зависит от T
+    }
+
+    public static void task6_2_1(){
+        System.out.println("=== 6.2.1 Сдвинуть линию ===");
+        Line<Point> line2d = Line.of(5, 1, 8, 8);
+        Line<Point3D> line3d = new Line<>(new Point3D(-7, 2, 3), new Point3D(0, 0, 0));
+        shiftStart(line2d);
+        shiftStart(line3d);
+        System.out.println(line2d);
+        System.out.println(line3d);
+    }
 }

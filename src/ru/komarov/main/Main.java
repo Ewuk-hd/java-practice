@@ -21,6 +21,10 @@ class Main {
         MainTest.task5_2_3();
         MainTest.task6_1_1();
         MainTest.task6_1_2();
+        MainTest.task6_1_4();
+        MainTest.task6_1_5();
+        MainTest.task6_1_6();
+
 
         //clone (с пары)
 //        Point p0001 = new Point(5, 3);

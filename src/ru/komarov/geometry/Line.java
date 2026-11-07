@@ -1,63 +1,69 @@
 package ru.komarov.geometry;
 
-import java.util.Objects;
+public class Line<T extends Point> implements Measurable, Cloneable{
+    private T start;
+    private T end;
 
-public class Line implements Measurable, Cloneable{
-    private static final Point DEFAULT_POINT = new Point(0,0);
-    private Point start;
-    private Point end;
-
-    public Line(int x1, int y1, int x2, int y2) {
-        this.start = new Point(x1, y1);
-        this.end = new Point(x2, y2);
+    public static Line<Point> of(int x1, int y1, int x2, int y2) {
+        return new Line<>(new Point(x1, y1), new Point(x2, y2));
     }
 
-    public Line(Point start, Point end) {
-        this(check(start).getX(), check(start).getY(), check(end).getX(), check(end).getY());
+    public Line(T start, T end) {
+        if (start == null || end == null) {
+            throw new IllegalArgumentException("Точка не может быть null");
+        }
+        this.start = copy(start);
+        this.end = copy(end);
     }
 
-    public Line(Line line){
+    public Line(Line<T> line){
         this(line.start, line.end);
     }
 
-    private static Point check(Point point){
-        if (point == null){
-            return DEFAULT_POINT;
+    private T copy(T point){
+        return (T) point.clone();
+    }
+
+    public T getEnd() {
+        return copy(end);
+    }
+
+    public void setEnd(T end) {
+        if (end == null) {
+            setEnd(0, 0);
+        } else {
+            this.end = copy(end);
         }
-        else return point;
-    }
-
-
-    public Point getEnd() {
-        return new Point(end);
-    }
-
-    public void setEnd(Point end) {
-        this.setEnd(check(end).getX(), check(end).getY());
     }
 
     public void setEnd(int x, int y){
-        this.end = new Point(x, y);
+        end.setX(x);
+        end.setY(y);
     }
 
-    public Point getStart() {
-        return new Point(start);
+    public T getStart() {
+        return copy(start);
     }
 
-    public void setStart(Point start) {
-        this.setStart(check(start).getX(), check(start).getY());
+    public void setStart(T start) {
+        if (start == null) {
+            setStart(0, 0);
+        } else {
+            this.start = copy(start);
+        }
     }
 
     public void setStart(int x, int y){
-        this.start = new Point(x, y);
+        start.setX(x);
+        start.setY(y);
     }
 
     @Override
-    public Line clone() {
+    public Line<T> clone() {
         try {
-            Line copy = (Line) super.clone();
-            copy.start = start.clone();
-            copy.end = end.clone();
+            Line<T> copy = (Line<T>) super.clone();
+            copy.start = copy(start);
+            copy.end = copy(end);
             return copy;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
@@ -66,17 +72,18 @@ public class Line implements Measurable, Cloneable{
 
     @Override
     public double getLength(){
-        int kat1 = getEnd().getX()-getStart().getX();
-        int kat2 = getEnd().getY()-getStart().getY();
-        double len = Math.sqrt(kat1*kat1 + kat2*kat2);
-        return len;
+        int kat1 = end.getX() - start.getX();
+        int kat2 = end.getY() - start.getY();
+        return Math.sqrt(kat1*kat1 + kat2*kat2);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
+        Line<?> line = (Line<?>) o; //Приводим неизвестное к неизвестному, чтобы добраться до точек.
+                                    //Если типы точек не равны, то проверка не пройдет, так как в
+                                    //equals у Point есть проверка с getClass().
         return start.equals(line.start) && end.equals(line.end) || start.equals(line.end) && end.equals(line.start);
     }
 

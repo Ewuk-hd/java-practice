@@ -46,7 +46,7 @@ public class PolygonalLine implements Measurable {
     public double getLength(){
         double length = 0;
         for (int i = 0; i < points.size() - 1; i++){
-            length += new Line(points.get(i), points.get(i + 1)).getLength();
+            length += new Line<>(points.get(i), points.get(i + 1)).getLength();
         }
         return length;
     }

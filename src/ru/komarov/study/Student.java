@@ -1,9 +1,11 @@
 package ru.komarov.study;
 
+import ru.komarov.generics.MyComparable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student implements Cloneable {
+public class Student implements Cloneable, MyComparable<Student>{
     private String name;
     private ArrayList<Integer> marks;
     private final MarkRule rule;
@@ -86,6 +88,12 @@ public class Student implements Cloneable {
             }
         }
         return true;
+    }
+
+    public int compare(Student s){
+        if(this.getAverage() > s.getAverage()) return 1;
+        if(this.getAverage() < s.getAverage()) return -1;
+        return 0;
     }
 
     @Override

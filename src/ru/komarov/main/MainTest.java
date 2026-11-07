@@ -11,6 +11,7 @@ import ru.komarov.map.City;
 import ru.komarov.map.CityBackWay;
 import ru.komarov.generics.Box;
 import ru.komarov.generics.Storage;
+import ru.komarov.generics.Stack;
 import java.util.List;
 import java.util.Random;
 
@@ -174,9 +175,9 @@ public class MainTest {
 
     public static void task5_1_3(){
         System.out.println("=== 5.1.3 Сравнение линий ===");
-        Line l1 = new Line(1, 2, 3, 4);
-        Line l2 = new Line(1, 2, 3, 4);
-        Line l3 = new Line(3, 4, 1, 2);
+        Line<Point> l1 = Line.of(1, 2, 3, 4);
+        Line<Point> l2 = Line.of(1, 2, 3, 4);
+        Line<Point> l3 = Line.of(3, 4, 1, 2);
         System.out.println(l1.equals(l2) + " " + l1.equals(l3) + " " + l2.equals(l3));
         System.out.println((l1.hashCode() == l2.hashCode()) + " " + (l1.hashCode() == l3.hashCode()));
     }
@@ -236,8 +237,8 @@ public class MainTest {
 
     public static void task5_2_3(){
         System.out.println("=== 5.2.3 Клонирование линии ===");
-        Line line = new Line(0, 0, 3, 4);
-        Line copy = line.clone();
+        Line<Point> line = Line.of(0, 0, 3, 4);
+        Line<Point> copy = line.clone();
         line.setEnd(9, 9);
         System.out.println("оригинал: " + line + ", копия: " + copy);
     }
@@ -278,5 +279,30 @@ public class MainTest {
         printFromStorage(new Storage<Integer>(99), -1);
         printFromStorage(new Storage<String>(null), "default");
         printFromStorage(new Storage<String>("hello"), "hello world");
+    }
+
+    public static void task6_1_4(){
+        System.out.println("=== 6.1.4 ===");
+        Student s01 = new Student("Alex", 5, 5, 5, 5);
+        Student s02 = new Student("Ilya", 5, 5, 5, 4);
+        System.out.println(s01.compare(s02));
+    }
+
+    public static void task6_1_5(){
+        System.out.println("=== 6.1.5 Обобщенная линия ===");
+        Line<Point3D> line = new Line<>(new Point3D(1, 2, 3), new Point3D(4, 5, 6));
+        System.out.println(line);
+        Point3D start = line.getStart();
+        System.out.println("z начала: " + start.getZ());
+    }
+
+    public static void task6_1_6(){
+        System.out.println("=== 6.1.6 Стек ===");
+        Stack<String> stack = new Stack<>();
+        stack.push("a");
+        stack.push("b");
+        stack.push("c");
+        System.out.println(stack + ", сверху: " + stack.peek());
+        System.out.println("pop: " + stack.pop() + ", осталось: " + stack);
     }
 }

@@ -1,6 +1,5 @@
 package ru.komarov.geometry;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClosedPolygonalLine extends PolygonalLine {
 
@@ -23,11 +22,7 @@ public class ClosedPolygonalLine extends PolygonalLine {
     }
 
     @Override
-    protected List<Point> getPath(){
-        ArrayList<Point> path = getPoints();
-        if (!path.isEmpty()) {
-            path.add(path.get(0));   //замыкающий отрезок
-        }
-        return path;
+    protected boolean isClosed(){
+        return true;
     }
 }

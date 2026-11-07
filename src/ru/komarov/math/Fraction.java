@@ -1,6 +1,6 @@
 package ru.komarov.math;
 
-public final class Fraction extends Number {
+public final class Fraction extends Number implements Cloneable {
     private final int numerator;
     private final int denominator;
 
@@ -87,6 +87,15 @@ public final class Fraction extends Number {
     @Override
     public int hashCode() {
         return 31 * numerator + denominator;
+    }
+
+    @Override
+    public Fraction clone() {
+        try {
+            return (Fraction) super.clone();   //поля int - поверхностной копии достаточно
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

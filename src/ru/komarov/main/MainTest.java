@@ -9,6 +9,8 @@ import ru.komarov.math.Fraction;
 import ru.komarov.geometry.*;
 import ru.komarov.map.City;
 import ru.komarov.map.CityBackWay;
+import ru.komarov.generics.Box;
+import ru.komarov.generics.Storage;
 import java.util.List;
 import java.util.Random;
 
@@ -212,5 +214,69 @@ public class MainTest {
         Student s3 = new Student("Вася", 5, 5);
         Student s4 = new Student("Петя", 4, 4);
         System.out.println(s1.equals(s2) + " " + (s1.hashCode() == s2.hashCode()) + " " + s1.equals(s3) + " " + s2.equals(s4));
+    }
+
+    public static void task5_2_1(){
+        System.out.println("=== 5.2.1 Клонирование дроби ===");
+        Fraction f = new Fraction(3, 4);
+        Fraction copy = f.clone();
+        System.out.println(copy + " равна: " + f.equals(copy) + ", другой объект: " + (f != copy));
+    }
+
+    public static void task5_2_2(){
+        System.out.println("=== 5.2.2 Клонирование точки ===");
+        Point p = new Point(1, 2);
+        Point copy = p.clone();
+        p.setX(99);
+        System.out.println("оригинал: " + p + ", копия: " + copy);
+        Point p3 = new Point3D(1, 2, 3);
+        Point copy3 = p3.clone();
+        System.out.println("копия Point3D: " + copy3 + ", тип: " + copy3.getClass().getSimpleName());
+    }
+
+    public static void task5_2_3(){
+        System.out.println("=== 5.2.3 Клонирование линии ===");
+        Line line = new Line(0, 0, 3, 4);
+        Line copy = line.clone();
+        line.setEnd(9, 9);
+        System.out.println("оригинал: " + line + ", копия: " + copy);
+    }
+
+    //Метод для 6.1.1
+    public static void printFromBox(Box<Integer> box){
+        int value = box.getOb();
+        System.out.println("Достали из коробки: " + value + ", коробка заполнена: " + box.isFull());
+    }
+
+    public static void task6_1_1(){
+        System.out.println("=== 6.1.1 Обобщенная коробка ===");
+        Box<Integer> box = new Box<>();
+        box.setOb(3);
+        System.out.println("Коробка заполнена: " + box.isFull());
+        try {
+            box.setOb(5);
+        } catch (RuntimeException e) {
+            System.out.println("Нельзя положить в непустую коробку");
+        }
+        printFromBox(box);
+    }
+
+    //Методы для 6.1.2
+    public static void printFromStorage(Storage<Integer> storage, int alternative){
+        int value = storage.getOb(alternative);
+        System.out.println("Из хранилища чисел: " + value);
+    }
+
+    public static void printFromStorage(Storage<String> storage, String alternative){
+        String value = storage.getOb(alternative);
+        System.out.println("Из хранилища строк: " + value);
+    }
+
+    public static void task6_1_2(){
+        System.out.println("=== 6.1.2 Без null ===");
+        printFromStorage(new Storage<Integer>(null), 0);
+        printFromStorage(new Storage<Integer>(99), -1);
+        printFromStorage(new Storage<String>(null), "default");
+        printFromStorage(new Storage<String>("hello"), "hello world");
     }
 }

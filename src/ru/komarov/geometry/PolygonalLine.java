@@ -51,9 +51,61 @@ public class PolygonalLine implements Measurable {
         return length;
     }
 
-    //Все точки, по которым проходит линия (у замкнутой в конце повторяется первая)
+    //Замкнута ли линия (переопределяется в ClosedPolygonalLine)
+    protected boolean isClosed(){
+        return false;
+    }
+
+    //Точки линии без лишних (у замкнутой в конце повторяется первая)
     protected List<Point> getPath(){
-        return getPoints();
+        List<Point> points = getPoints();
+        //незамкнутая линия, вернувшаяся в начальную точку, — по сути тоже кольцо
+        boolean cycle = isClosed() || isCycle(points);
+        List<Point> path = simplify(points, cycle);
+        if (cycle && path.size() > 1) {
+            path.add(path.get(0));   //замыкающий отрезок
+        }
+        return path;
+    }
+
+    //Убирает отрезки нулевой длины и точки, лежащие на прямой между соседями
+    private static List<Point> simplify(List<Point> points, boolean closed){
+        List<Point> result = new ArrayList<>();
+        for (Point p : points) {
+            if (result.isEmpty() || !result.get(result.size() - 1).equals(p)) {
+                result.add(p);
+            }
+        }
+        if (closed) {
+            while (result.size() > 1 && result.get(result.size() - 1).equals(result.get(0))) {
+                result.remove(result.size() - 1);
+            }
+        }
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            int n = result.size();
+            for (int i = 0; i < n; i++) {
+                if (!closed && (i == 0 || i == n - 1)) continue;   //у незамкнутой концы не трогаем
+                if (n < 3) break;
+                Point a = result.get((i - 1 + n) % n);
+                Point b = result.get(i);
+                Point c = result.get((i + 1) % n);
+                if (isStraight(a, b, c)) {
+                    result.remove(i);
+                    changed = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    //B лежит на отрезке AC и не является разворотом назад
+    private static boolean isStraight(Point a, Point b, Point c){
+        int cross = (b.getX() - a.getX()) * (c.getY() - a.getY()) - (b.getY() - a.getY()) * (c.getX() - a.getX());
+        int dot = (b.getX() - a.getX()) * (c.getX() - b.getX()) + (b.getY() - a.getY()) * (c.getY() - b.getY());
+        return cross == 0 && dot > 0;
     }
 
     //Линия замкнута в кольцо: первая точка совпадает с последней

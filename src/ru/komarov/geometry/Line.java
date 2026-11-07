@@ -58,6 +58,19 @@ public class Line implements Measurable{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return start.equals(line.start) && end.equals(line.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * start.hashCode() + end.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Линия от " + start + " до " + end;
     }

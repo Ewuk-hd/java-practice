@@ -61,7 +61,7 @@ public class Student implements Cloneable {
 
     private void checkMark(int mark) {
         if (rule != null && !rule.isValid(mark)) {
-            throw new IllegalGradeException(mark);
+            throw new IllegalGradeException("Недопустимая оценка " + mark + " у студента " + name);
         }
     }
 
@@ -97,6 +97,22 @@ public class Student implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (getClass() != o.getClass()) return false;
+        Student s = (Student) o;
+        boolean sameName = name == null ? s.name == null : name.equals(s.name);
+        return sameName && getAverage() == s.getAverage();
+    }
+
+    @Override
+    public int hashCode() {
+        int nameHash = name == null ? 0 : name.hashCode();
+        return 31 * nameHash + Double.hashCode(getAverage());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ru.komarov.geometry;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class PolygonalLine implements Measurable {
     private ArrayList<Point> points;
@@ -49,6 +51,57 @@ public class PolygonalLine implements Measurable {
         return length;
     }
 
+    //Все точки, по которым проходит линия (у замкнутой в конце повторяется первая)
+    protected List<Point> getPath(){
+        return getPoints();
+    }
+
+    //Линия замкнута в кольцо: первая точка совпадает с последней
+    private static boolean isCycle(List<Point> path){
+        return path.size() > 1 && path.get(0).equals(path.get(path.size() - 1));
+    }
+
+    //Сравнение колец: любая начальная точка и любое направление обхода
+    private static boolean sameCycle(List<Point> a, List<Point> b){
+        int n = a.size() - 1;   //последняя точка повторяет первую, её не считаем
+        for (int shift = 0; shift < n; shift++) {
+            boolean forward = true;
+            boolean backward = true;
+            for (int i = 0; i < n; i++) {
+                if (!a.get(i).equals(b.get((shift + i) % n))) forward = false;
+                if (!a.get(i).equals(b.get((shift - i + n) % n))) backward = false;
+            }
+            if (forward || backward) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof PolygonalLine)) return false;
+        List<Point> a = getPath();
+        List<Point> b = ((PolygonalLine) o).getPath();
+        if (a.size() != b.size()) return false;
+        if (isCycle(a) && isCycle(b)) {
+            return sameCycle(a, b);
+        }
+        List<Point> reversed = new ArrayList<>(b);
+        Collections.reverse(reversed);
+        return a.equals(b) || a.equals(reversed);
+    }
+
+    @Override
+    public int hashCode() {
+        List<Point> path = getPath();
+        int size = isCycle(path) ? path.size() - 1 : path.size();
+        int hash = 0;
+        for (int i = 0; i < size; i++) {
+            hash += path.get(i).hashCode();   //сумма не зависит от порядка и направления
+        }
+        return hash;
+    }
 
     @Override
     public PolygonalLine clone() {
@@ -64,6 +117,7 @@ public class PolygonalLine implements Measurable {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public String toString() {

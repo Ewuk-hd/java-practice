@@ -27,6 +27,8 @@ public final class Point3D extends Point {
         coords[2] = z;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) return false;

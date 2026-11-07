@@ -57,6 +57,24 @@ public class City {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;   //CityBackWay тоже City
+        City city = (City) o;
+        return ways.size() == city.ways.size() && ways.containsAll(city.ways);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (Way way : ways) {
+            hash += way.hashCode();   //сумма не зависит от порядка путей
+        }
+        return hash;
+    }
+
+    @Override
     public String toString(){
         return name + " " + ways;
     }

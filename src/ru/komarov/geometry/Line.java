@@ -1,5 +1,8 @@
 package ru.komarov.geometry;
-public class Line implements Measurable{
+
+import java.util.Objects;
+
+public class Line implements Measurable, Cloneable{
     private static final Point DEFAULT_POINT = new Point(0,0);
     private Point start;
     private Point end;
@@ -50,6 +53,18 @@ public class Line implements Measurable{
     }
 
     @Override
+    public Line clone() {
+        try {
+            Line copy = (Line) super.clone();
+            copy.start = start.clone();
+            copy.end = end.clone();
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public double getLength(){
         int kat1 = getEnd().getX()-getStart().getX();
         int kat2 = getEnd().getY()-getStart().getY();
@@ -62,12 +77,13 @@ public class Line implements Measurable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return start.equals(line.start) && end.equals(line.end);
+
+        return start.equals(line.start) && end.equals(line.end) || start.equals(line.end) && end.equals(line.start);
     }
 
     @Override
     public int hashCode() {
-        return 31 * start.hashCode() + end.hashCode();
+        return start.hashCode() + end.hashCode();
     }
 
     @Override

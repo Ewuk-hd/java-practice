@@ -76,6 +76,20 @@ public final class Fraction extends Number {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (getClass() != o.getClass()) return false;
+        Fraction f = (Fraction) o;
+        return numerator == f.numerator && denominator == f.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * numerator + denominator;
+    }
+
+    @Override
     public String toString(){
         return numerator + "/" + denominator;
     }

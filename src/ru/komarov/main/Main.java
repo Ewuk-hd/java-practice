@@ -9,7 +9,7 @@ class Main {
 //        System.out.println(p0001);
 //        System.out.println(p0002);
 
-       // Comment comment = new Comment("автор" , "text");
-       // Comment comment2 = new Comment("author", "lox");
+       // trash.Comment comment = new trash.Comment("автор" , "text");
+       // trash.Comment comment2 = new trash.Comment("author", "lox");
     }
 }

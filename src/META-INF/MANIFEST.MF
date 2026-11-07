@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: ru.komarov.main.Main
+trash.Main-Class: ru.komarov.main.Main

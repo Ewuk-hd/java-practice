@@ -55,6 +55,19 @@ public sealed class Point implements Cloneable permits Point3D {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return getX() == point.getX() && getY() == point.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * getX() + getY();
+    }
+
+    @Override
     public String toString() {
         String result = "{";
         for (int i = 0; i < coords.length ; i++) {

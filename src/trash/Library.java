@@ -1,3 +1,5 @@
+package trash;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -21,7 +23,6 @@ public class Library {
     public Library(String name){
         this(name, new ArrayList<>());
     }
-
 
     public String getName() {
         return name;

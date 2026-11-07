@@ -1,3 +1,5 @@
+package trash;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +55,7 @@ public class Comment {
         return new ArrayList<>(this.comments);
     }
 
-//    public void setComments(List<Comment> comments) {
+//    public void setComments(List<trash.Comment> comments) {
 //        this.comments = comments;
 //    }
 

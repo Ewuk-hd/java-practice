@@ -26,4 +26,16 @@ public final class Point3D extends Point {
     public void setZ(int z) {
         coords[2] = z;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        Point3D point = (Point3D) o;
+        return getZ() == point.getZ();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * super.hashCode() + getZ();
+    }
 }

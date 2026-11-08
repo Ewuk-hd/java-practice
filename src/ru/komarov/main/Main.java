@@ -25,6 +25,11 @@ class Main {
         MainTest.task6_1_5();
         MainTest.task6_1_6();
         MainTest.task6_2_1();
+        MainTest.task6_2_2();
+        MainTest.task6_2_3();
+        MainTest.task6_2_4();
+        MainTest.task6_3_1();
+
 
 
         //clone (с пары)

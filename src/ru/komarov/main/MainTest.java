@@ -12,6 +12,11 @@ import ru.komarov.map.CityBackWay;
 import ru.komarov.generics.Box;
 import ru.komarov.generics.Storage;
 import ru.komarov.generics.Stack;
+import ru.komarov.generics.MyFunction;
+import ru.komarov.generics.StringLength;
+import ru.komarov.generics.Abs;
+import ru.komarov.generics.ArrayMax;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -322,5 +327,83 @@ public class MainTest {
         shiftStart(line3d);
         System.out.println(line2d);
         System.out.println(line3d);
+    }
+
+    //метод для 6.2.2
+    public static double maxBoxValue(Box<? extends Number>... boxes){
+        double max = Double.NEGATIVE_INFINITY;
+        for (Box<? extends Number> box : boxes) {
+            double value = box.getOb().doubleValue();
+            if (value > max) max = value;
+        }
+        return max;
+    }
+
+    public static void task6_2_2(){
+        System.out.println("=== 6.2.2 Поиск максимума ===");
+        Box<Integer> b01 = new Box<>();
+        b01.setOb(25);
+
+        Box<Double> b02 = new Box<>();
+        b02.setOb(13.02);
+
+        Box<Byte> b03 = new Box<>();
+        b03.setOb((byte) 127);
+
+        System.out.println(maxBoxValue(b01, b02, b03));
+    }
+
+    //метод для 6.2.3
+    public static void putPoint(Box<? super Point3D> box){
+        box.setOb(new Point3D((int)(Math.random()*10), (int)(Math.random()*10), (int)(Math.random()*10)));
+    }
+
+    public static void task6_2_3(){
+        System.out.println("=== 6.2.3 Начало отсчета ===");
+        Box<Point3D> b01 = new Box<>();
+        Box<Point> b02 = new Box<>();
+        Box<Object> b03 = new Box<>();
+        putPoint(b01);
+        putPoint(b02);
+        putPoint(b03);
+        System.out.println(b01.getOb() + " " + b02.getOb() + " " + b03.getOb());
+    }
+
+    //метод для 6.2.4
+    public static void putNumbers(List<? super Integer> nums){
+        for (int i = 1; i <= 100; i++) {
+            nums.add(i);
+        }
+    }
+
+    public static void task6_2_4(){
+        System.out.println("=== 6.2.4 Заполнение списка ===");
+        List<Integer> ints = new ArrayList<>();
+        List<Number> numbers = new ArrayList<>();
+        List<Object> objs = new ArrayList<>();
+
+        putNumbers(ints);
+        putNumbers(numbers);
+        putNumbers(objs);
+
+        System.out.println(ints.size() + " " + ints.get(0) + ".." + ints.get(99));
+        System.out.println(numbers.size() + " " + numbers.get(0) + ".." + numbers.get(99));
+        System.out.println(objs.size() + " " + objs.get(0) + ".." + objs.get(99));
+    }
+
+    //Метод для 6.3.1
+    public static <T, P> List<P> map(List<T> list, MyFunction<T, P> function){
+        List<P> result = new ArrayList<>();
+        for (T t : list) {
+            result.add(function.apply(t));
+        }
+        return result;
+    }
+
+    public static void task6_3_1(){
+        System.out.println("=== 6.3.1 Функция ===");
+        System.out.println(map(List.of("qwerty", "asdfg", "zx"), new StringLength()));
+        System.out.println(map(List.of(1, -3, 7), new Abs()));
+        System.out.println(map(List.of(new int[]{1, 5, 3}, new int[]{-2, -8}), new ArrayMax()));
     }
 }

@@ -1,5 +1,6 @@
 package ru.komarov.main;
 
+import ru.komarov.generics.*;
 import ru.komarov.study.BinaryMarkRule;
 import ru.komarov.study.EvenMarkRule;
 import ru.komarov.study.IllegalGradeException;
@@ -9,14 +10,9 @@ import ru.komarov.math.Fraction;
 import ru.komarov.geometry.*;
 import ru.komarov.map.City;
 import ru.komarov.map.CityBackWay;
-import ru.komarov.generics.Box;
-import ru.komarov.generics.Storage;
-import ru.komarov.generics.Stack;
-import ru.komarov.generics.MyFunction;
-import ru.komarov.generics.StringLength;
-import ru.komarov.generics.Abs;
-import ru.komarov.generics.ArrayMax;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -405,5 +401,64 @@ public class MainTest {
         System.out.println(map(List.of("qwerty", "asdfg", "zx"), new StringLength()));
         System.out.println(map(List.of(1, -3, 7), new Abs()));
         System.out.println(map(List.of(new int[]{1, 5, 3}, new int[]{-2, -8}), new ArrayMax()));
+    }
+
+    //Метод для 6.3.2
+    public static <T> List<T> testFilters(List<T> list, Filter<T> filter){
+        List<T> result = new ArrayList<>();
+        for (T t : list){
+            if(filter.test(t)){
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    public static void task6_3_2(){
+        System.out.println("=== 6.3.2 Фильтр ===");
+        System.out.println(testFilters(List.of("qwerty", "asdfg", "zx"), new ShortStrFilter()));
+        System.out.println(testFilters(List.of(1, -3, 7), new PositiveFilter()));
+
+        List<int[]> arrays = testFilters(List.of(new int[]{1, 5, 3}, new int[]{4, -2}, new int[]{-2, -8}), new NegativeMassiveFilter());
+        for (int[] arr : arrays) {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    //Метод для 6.3.3
+    public static <T> T reduce(List<T> list, Reducer<T> reducer, T initial){
+        T result = initial;
+        for (T t : list) {
+            result = reducer.apply(result, t);
+        }
+        return result;
+    }
+
+    public static void task6_3_3(){
+        System.out.println("=== 6.3.3 Сокращение ===");
+        System.out.println(reduce(List.of("qwerty", "asdfg", "zx"), new StringConcat(), ""));
+        System.out.println(reduce(List.of(1, -3, 7), new IntSum(), 0));
+
+        List<List<Integer>> lists = List.of(List.of(1, 2), List.of(3), List.of(4, 5, 6));
+        List<Integer> sizes = map(lists, new ListSize());
+        System.out.println(reduce(sizes, new IntSum(), 0));
+
+        System.out.println("Пустые списки: \"" + reduce(new ArrayList<String>(), new StringConcat(), "") + "\", " + reduce(new ArrayList<Integer>(), new IntSum(), 0));
+    }
+
+    //Метод для 6.3.4
+    public static <T, P> P collect(List<T> list, Creator<P> creator, Adder<P, T> adder){
+        P result = creator.create();
+        for (T t : list) {
+            adder.add(result, t);
+        }
+        return result;
+    }
+
+    public static void task6_3_4(){
+        System.out.println("=== 6.3.4 Коллекционирование ===");
+        System.out.println(collect(List.of(1, -3, 7), new TwoListsCreator(), new SignSplitter()));
+        System.out.println(collect(List.of("qwerty", "asdfg", "zx", "qw"), new ListOfListsCreator<String>(), new LengthGrouper()));
+        System.out.println(collect(List.of("qwerty", "asdfg", "qwerty", "qw"), new UniqueListCreator<String>(), new UniqueAdder<String>()));
     }
 }

@@ -1,4 +1,5 @@
 package ru.komarov.generics;
 
-public class Filter {
+public interface Filter<T> {
+    boolean test(T t);
 }

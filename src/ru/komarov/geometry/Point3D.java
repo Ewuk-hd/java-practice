@@ -12,7 +12,7 @@ public final class Point3D extends Point {
 
     public Point3D(Point point){
         super(point);
-        int[] src = point.getPoints();
+        int[] src = point.getCoords();
         coords = new int[3];
         coords[0] = src[0];
         coords[1] = src[1];

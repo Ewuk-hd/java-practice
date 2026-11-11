@@ -1,7 +1,8 @@
 package ru.komarov.geometry;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class ClosedPolygonalLine extends PolygonalLine {
+public class ClosedPolygonalLine extends PolygonalLine implements Iterable<Point> {
 
     public ClosedPolygonalLine(){
         super();
@@ -21,8 +22,45 @@ public class ClosedPolygonalLine extends PolygonalLine {
         return length;
     }
 
+
+
     @Override
     protected boolean isClosed(){
         return true;
     }
+
+    @Override
+    public Iterator<Point> iterator() {
+
+        return new PointIterator();
+    }
+
+    private class PointIterator implements Iterator<Point>{
+        private int index =0;
+
+        @Override
+        public boolean hasNext(){
+            return true;
+        }
+
+        @Override
+        public Point next(){
+            ArrayList<Point> points = getPoints();
+            if(index >= points.size()){
+                index = 0;
+
+
+            }
+            return points.get(index++);
+        }
+
+    }
+
+
 }
+
+
+//хотим чтобы реализовывала интерфейс итерабл
+//метод итератор
+//итератор прячется внутри класса, реализуем клас итератор имеющий некст и хеснекст,
+// некст всегда true, некст всегда следующий поинт, когда список значений заканчивается мы переходим в начало

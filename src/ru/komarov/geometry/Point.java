@@ -10,7 +10,7 @@ public sealed class Point implements Cloneable permits Point3D {
     }
 
     public Point(Point point){
-        int[] src = point.getPoints();
+        int[] src = point.getCoords();
         coords = new int[2];
         coords[0] = src[0];
         coords[1] = src[1];
@@ -32,7 +32,7 @@ public sealed class Point implements Cloneable permits Point3D {
         coords[1] = y;
     }
 
-    public int[] getPoints(){
+    public int[] getCoords(){
         int[] copy = new int[coords.length];
         for (int i = 0; i < coords.length; i++){
             copy[i] = coords[i];

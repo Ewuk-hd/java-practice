@@ -13,6 +13,7 @@ import ru.komarov.map.CityBackWay;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -291,7 +292,7 @@ public class MainTest {
 
     public static void task6_1_5(){
         System.out.println("=== 6.1.5 Обобщенная линия ===");
-        Line<Point3D> line = new Line<>(new Point3D(1, 2, 3), new Point3D(4, 5, 6));
+        Line<Point3D> line = Line.of(1, 2, 3, 4, 5, 6);
         System.out.println(line);
         Point3D start = line.getStart();
         System.out.println("z начала: " + start.getZ());
@@ -309,16 +310,16 @@ public class MainTest {
 
     //Метод для 6.2.1
     public static void shiftStart(Line<? extends Point> line){
-        Point start = line.getStart();                      // getter работает: вернёт как минимум Point
+        Point start = line.getStart();
         int x = start.getX();
-        int newX = x >= 0 ? x + 10 : x - 10;                 // 5 → 15, -7 → -17
-        line.setStart(newX, start.getY());                   // setStart(int, int) — не зависит от T
+        int newX = x >= 0 ? x + 10 : x - 10;
+        line.setStart(newX, start.getY());
     }
 
     public static void task6_2_1(){
         System.out.println("=== 6.2.1 Сдвинуть линию ===");
         Line<Point> line2d = Line.of(5, 1, 8, 8);
-        Line<Point3D> line3d = new Line<>(new Point3D(-7, 2, 3), new Point3D(0, 0, 0));
+        Line<Point3D> line3d = Line.of(-7, 2, 3, 0, 0, 0);
         shiftStart(line2d);
         shiftStart(line3d);
         System.out.println(line2d);
@@ -329,6 +330,7 @@ public class MainTest {
     public static double maxBoxValue(Box<? extends Number>... boxes){
         double max = Double.NEGATIVE_INFINITY;
         for (Box<? extends Number> box : boxes) {
+            if (!box.isFull()) continue;
             double value = box.getOb().doubleValue();
             if (value > max) max = value;
         }
@@ -460,5 +462,16 @@ public class MainTest {
         System.out.println(collect(List.of(1, -3, 7), new TwoListsCreator(), new SignSplitter()));
         System.out.println(collect(List.of("qwerty", "asdfg", "zx", "qw"), new ListOfListsCreator<String>(), new LengthGrouper()));
         System.out.println(collect(List.of("qwerty", "asdfg", "qwerty", "qw"), new UniqueListCreator<String>(), new UniqueAdder<String>()));
+    }
+
+
+    //На паре: итератор замкнутой линии
+    public static void taskClosedLineIterator(){
+        System.out.println("=== Итератор замкнутой линии ===");
+        ClosedPolygonalLine cpl = new ClosedPolygonalLine(new Point(1, 1), new Point(2, 2), new Point(3, 3));
+        Iterator<Point> it = cpl.iterator();
+        for (int i = 0; i < 7; i++) {
+            System.out.println(it.next());
+        }
     }
 }

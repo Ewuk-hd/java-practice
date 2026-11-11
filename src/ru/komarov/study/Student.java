@@ -1,5 +1,7 @@
 package ru.komarov.study;
 
+import java.util.Objects;
+
 import ru.komarov.generics.MyComparable;
 
 import java.util.ArrayList;
@@ -113,7 +115,7 @@ public class Student implements Cloneable, MyComparable<Student>{
         if (this == o) return true;
         if (getClass() != o.getClass()) return false;
         Student s = (Student) o;
-        boolean sameName = name == null ? s.name == null : name.equals(s.name);
+        boolean sameName = Objects.equals(name, s.name);
         return sameName && getAverage() == s.getAverage();
     }
 

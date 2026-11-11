@@ -32,6 +32,7 @@ class Main {
         MainTest.task6_3_2();
         MainTest.task6_3_3();
         MainTest.task6_3_4();
+        MainTest.taskClosedLineIterator();
 
 
 

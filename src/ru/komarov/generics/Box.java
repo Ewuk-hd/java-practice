@@ -10,7 +10,7 @@ public class Box<T> {
     }
 
     public void setOb(T ob) {
-        if(this.ob != null) throw new RuntimeException();
+        if(this.ob != null) throw new RuntimeException("Коробка уже заполнена");
         this.ob = ob;
     }
 

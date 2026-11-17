@@ -26,8 +26,17 @@ public class Line<T extends Point> implements Measurable, Cloneable{
         if (start == null || end == null) {
             throw new IllegalArgumentException("Точка не может быть null");
         }
-        this.start = copy(start);
-        this.end = copy(end);
+        if(start.getClass() != end.getClass()){
+            if(start.getClass() == Point.class){
+                this.start = (T)new Point3D(start.getX(), start.getY(), 0);
+            }
+            else{
+                this.end = (T)new Point3D(end.getX(), end.getY(), 0);
+
+            }
+        }
+        if(this.start == null) this.start = (T) start.clone();
+        if(this.end == null) this.end = (T) end.clone();
     }
 
     public Line(Line<T> line){
@@ -45,8 +54,16 @@ public class Line<T extends Point> implements Measurable, Cloneable{
     public void setEnd(T end) {
         if (end == null) {
             setEnd(0, 0);
+        } else if(end.getClass() != start.getClass()){
+            if(end.getClass() == Point.class){
+                this.end = (T)new Point3D(end.getX(), end.getY(), 0);
+            }
+            else{
+                this.end = (T) end.clone();
+                this.start = (T)new Point3D(start.getX(), start.getY(), 0);
+            }
         } else {
-            this.end = copy(end);
+            this.end = (T) end.clone();
         }
     }
 
@@ -62,8 +79,16 @@ public class Line<T extends Point> implements Measurable, Cloneable{
     public void setStart(T start) {
         if (start == null) {
             setStart(0, 0);
+        } else if(start.getClass() != end.getClass()){
+            if(start.getClass() == Point.class){
+                this.start = (T)new Point3D(start.getX(), start.getY(), 0);
+            }
+            else{
+                this.start = (T) start.clone();
+                this.end = (T)new Point3D(end.getX(), end.getY(), 0);
+            }
         } else {
-            this.start = copy(start);
+            this.start = (T) start.clone();
         }
     }
 
@@ -86,6 +111,7 @@ public class Line<T extends Point> implements Measurable, Cloneable{
 
     @Override
     public double getLength(){
+
         int[] a = start.getCoords();
         int[] b = end.getCoords();
 

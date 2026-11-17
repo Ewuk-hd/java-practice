@@ -22,8 +22,6 @@ public class ClosedPolygonalLine extends PolygonalLine implements Iterable<Point
         return length;
     }
 
-
-
     @Override
     protected boolean isClosed(){
         return true;
@@ -58,7 +56,6 @@ public class ClosedPolygonalLine extends PolygonalLine implements Iterable<Point
 
 
 }
-
 
 //хотим чтобы реализовывала интерфейс итерабл
 //метод итератор

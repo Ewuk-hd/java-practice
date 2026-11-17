@@ -474,4 +474,17 @@ public class MainTest {
             System.out.println(it.next());
         }
     }
+
+    //На паре: линия из разных точек
+    public static void taskMixedLine(){
+        System.out.println("=== Линия из 2D и 3D точек ===");
+        Line<Point> line = new Line<>(new Point(1, 2), new Point3D(4, 5, 6));
+        System.out.println(line);
+        line.setStart(new Point(7, 7));
+        System.out.println(line);
+        Line<Point> line2 = new Line<>(new Point(1, 1), new Point(2, 2));
+        line2.setEnd(new Point3D(3, 3, 3));
+        System.out.println(line2);
+        System.out.println("Длина: " + line2.getLength());
+    }
 }

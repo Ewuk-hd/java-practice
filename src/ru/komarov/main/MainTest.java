@@ -1,6 +1,7 @@
 package ru.komarov.main;
 
 import ru.komarov.generics.*;
+import static ru.komarov.generics.ListUtils.*;
 import ru.komarov.study.BinaryMarkRule;
 import ru.komarov.study.EvenMarkRule;
 import ru.komarov.study.IllegalGradeException;
@@ -165,39 +166,55 @@ public class MainTest {
 
     public static void task6_3_1(){
         System.out.println("=== 6.3.1 Функция ===");
-        System.out.println(ListUtils.map(List.of("qwerty", "asdfg", "zx"), new ListUtils.StringLength()));
-        System.out.println(ListUtils.map(List.of(1, -3, 7), new ListUtils.Abs()));
-        System.out.println(ListUtils.map(List.of(new int[]{1, 5, 3}, new int[]{-2, -8}), new ListUtils.ArrayMax()));
+        List<String> words = List.of("qwerty", "asdfg", "zx");
+        List<Integer> nums = List.of(1, -3, 7);
+        List<int[]> arrays = List.of(new int[]{1, 5, 3}, new int[]{-2, -8});
+
+        System.out.println(map(words, new StringLength()));
+        System.out.println(map(nums, new Abs()));
+        System.out.println(map(arrays, new ArrayMax()));
     }
 
     public static void task6_3_2(){
         System.out.println("=== 6.3.2 Фильтр ===");
-        System.out.println(ListUtils.filter(List.of("qwerty", "asdfg", "zx"), new ListUtils.ShortStrFilter()));
-        System.out.println(ListUtils.filter(List.of(1, -3, 7), new ListUtils.PositiveFilter()));
+        List<String> words = List.of("qwerty", "asdfg", "zx");
+        List<Integer> nums = List.of(1, -3, 7);
+        List<int[]> arrays = List.of(new int[]{1, 5, 3}, new int[]{4, -2}, new int[]{-2, -8});
 
-        List<int[]> arrays = ListUtils.filter(List.of(new int[]{1, 5, 3}, new int[]{4, -2}, new int[]{-2, -8}), new ListUtils.NegativeMassiveFilter());
-        for (int[] arr : arrays) {
+        System.out.println(filter(words, new ShortStrFilter()));
+        System.out.println(filter(nums, new PositiveFilter()));
+        for (int[] arr : filter(arrays, new NegativeMassiveFilter())) {
             System.out.println(Arrays.toString(arr));
         }
     }
 
     public static void task6_3_3(){
         System.out.println("=== 6.3.3 Сокращение ===");
-        System.out.println(ListUtils.reduce(List.of("qwerty", "asdfg", "zx"), new ListUtils.StringConcat(), ""));
-        System.out.println(ListUtils.reduce(List.of(1, -3, 7), new ListUtils.IntSum(), 0));
-
+        List<String> words = List.of("qwerty", "asdfg", "zx");
+        List<Integer> nums = List.of(1, -3, 7);
         List<List<Integer>> lists = List.of(List.of(1, 2), List.of(3), List.of(4, 5, 6));
-        List<Integer> sizes = ListUtils.map(lists, new ListUtils.ListSize());
-        System.out.println(ListUtils.reduce(sizes, new ListUtils.IntSum(), 0));
 
-        System.out.println("Пустые списки: \"" + ListUtils.reduce(new ArrayList<String>(), new ListUtils.StringConcat(), "") + "\", " + ListUtils.reduce(new ArrayList<Integer>(), new ListUtils.IntSum(), 0));
+        System.out.println(reduce(words, new StringConcat(), ""));
+        System.out.println(reduce(nums, new IntSum(), 0));
+
+
+        List<Integer> sizes = map(lists, new ListSize());
+        System.out.println(reduce(sizes, new IntSum(), 0));
+
+//        String emptyStr = reduce(new ArrayList<String>(), new StringConcat(), "");
+//        int emptySum = reduce(new ArrayList<Integer>(), new IntSum(), 0);
+//        System.out.println("Пустые списки: \"" + emptyStr + "\", " + emptySum);
     }
 
     public static void task6_3_4(){
         System.out.println("=== 6.3.4 Коллекционирование ===");
-        System.out.println(ListUtils.collect(List.of(1, -3, 7), new ListUtils.TwoListsCreator(), new ListUtils.SignSplitter()));
-        System.out.println(ListUtils.collect(List.of("qwerty", "asdfg", "zx", "qw"), new ListUtils.LengthGroupCreator(), new ListUtils.LengthGrouper()));
-        System.out.println(ListUtils.collect(List.of("qwerty", "asdfg", "qwerty", "qw"), new ListUtils.UniqueSetCreator<String>(), new ListUtils.UniqueAdder<String>()));
+        List<Integer> nums = List.of(1, -3, 7);
+        List<String> words = List.of("qwerty", "asdfg", "zx", "qw");
+        List<String> repeats = List.of("qwerty", "asdfg", "qwerty", "qw");
+
+        System.out.println(collect(nums, new TwoListsCreator(), new SignSplitter()));
+        System.out.println(collect(words, new LengthGroupCreator(), new LengthGrouper()));
+        System.out.println(collect(repeats, new UniqueSetCreator<String>(), new UniqueAdder<String>()));
     }
 
     //На паре: итератор замкнутой линии

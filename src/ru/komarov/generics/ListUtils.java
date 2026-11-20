@@ -45,7 +45,8 @@ public class ListUtils {
         }
     }
 
-    public static class ListSize implements MyFunction<List<Integer>, Integer> {
+
+    public static class ListSize implements MyFunction<List<Integer>, Integer> { //чисто для 6.3.3
         @Override
         public Integer apply(List<Integer> list) {
             return list.size();
@@ -156,9 +157,9 @@ public class ListUtils {
             List<String> group = collection.get(value.length()); //группа ищется по длине за O(1)
             if (group == null) {
                 group = new ArrayList<>();
-                collection.put(value.length(), group);
+                collection.put(value.length(), group); //put можнт обновлять поэтому пишем только если пусто
             }
-            group.add(value);
+            group.add(value); //в мапе все обновится, т.к. там лтшь ссылка
         }
     }
 

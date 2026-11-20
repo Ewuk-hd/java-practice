@@ -135,7 +135,7 @@ public class Line<T extends Point> implements Measurable, Cloneable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line<?> line = (Line<?>) o; //Приводим неизвестное к неизвестному, чтобы добраться до точек.
+        Line<?> line = (Line<?>) o; //Приводим неизвестное к неизвестному чтобы добраться до точек
                                     //Если типы точек не равны, то проверка не пройдет, так как в
                                     //equals у Point есть проверка с getClass().
         return (Objects.equals(start, line.start) && Objects.equals(end, line.end)) ||
